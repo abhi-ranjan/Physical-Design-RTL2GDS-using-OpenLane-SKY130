@@ -43,7 +43,7 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   | SPEF_EXTRACTOR | Generation of SPEF file from DEF file |
 
 # Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
-  ### How to talk to computers
+  ## How to talk to computers
   ### IC Terminologies
   ### Introduction to RISC-V
   ### Software to Hardware 
