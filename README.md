@@ -3,7 +3,9 @@ The following repository consists of knowledge gained and steps followed while d
 # Table of Content
   * [About RTL to GDSII Flow](#about-rtl-to-gdsii-flow)
   * [SKYWater130 PDK](#skywater130-pdk)
-  * List of tools used
+  * [OpenLANE](#openlane)
+  * [Tools Used](#tools-used)
+ 
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
 The complete flow consists of following steps:
@@ -19,3 +21,18 @@ The complete flow consists of following steps:
 
 # SKYWater130 PDK
 It is a Open source PDK (Process Design Kit) which is released by the collabration of Google and SkyWater Technologies foundary. Currently this technology has a target node of 130 nm. It is open to everyone and can be accessed at [SkyWater Open Source PDK](https://github.com/google/skywater-pdk). This PDK is extremely flexible as it provides many optional featurs as standard features. Hence it povide designers with wide range of design choice. 
+
+# OpenLANE
+It is an open-source VLSI flow created using open source tools. Basically it is collection of various scripts which invoke and execute these tools in right sequence, modifies inputs and outputs and gives an organised results.
+
+# Tools Used
+ | Tool | Used for |
+ | ----- | ----- |
+ | [Yosys](https://github.com/YosysHQ/yosys) | Synthesis of RTL Design |
+  | ABC | Mapping of Netlist |
+  | [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) | Static Timing Analysis |
+  | [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD) | Floorplanning, Placement, CTS, Optimization, Routing |
+  | [TritonRoute](https://github.com/The-OpenROAD-Project/TritonRoute) | Detailed Routing |
+  | [Magic VLSI](http://opencircuitdesign.com/magic/) | Layout Tool |
+  | [NGSPICE](https://github.com/imr/ngspice) | SPICE Extraction and Simulation |
+  | SPEF_EXTRACTOR | Generation of SPEF file from DEF file |
