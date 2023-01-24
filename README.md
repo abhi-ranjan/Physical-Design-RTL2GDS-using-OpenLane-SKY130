@@ -6,7 +6,10 @@ The following repository consists of knowledge gained and steps followed while d
   * [OpenLANE](#openlane)
   * [Tools Used](#tools-used)
   * [Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK](#day-1---inception-of-open-source-eda-openlane-and-sky130-pdk)
-    - [How to talk to computers](#how-to-talk-to-computers) 
+    - [How to talk to computers](#how-to-talk-to-computers)
+      - [IC Terminologies](#ic-terminologies)
+      - [Introduction to RISC-V](#introduction-to-risc-v)
+      - [Software to Hardware](#software-to-hardware)
  
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -40,4 +43,8 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   | SPEF_EXTRACTOR | Generation of SPEF file from DEF file |
 
 # Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
-  ## How to talk to computers 
+  ### How to talk to computers
+  ### IC Terminologies
+  ### Introduction to RISC-V
+  ### Software to Hardware 
+  The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
