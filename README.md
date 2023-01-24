@@ -5,6 +5,8 @@ The following repository consists of knowledge gained and steps followed while d
   * [SKYWater130 PDK](#skywater130-pdk)
   * [OpenLANE](#openlane)
   * [Tools Used](#tools-used)
+  * [Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK](#day-1---inception-of-open-source-eda-openlane-and-sky130-pdk)
+    - [How to talk to computers](#how-to-talk-to-computers) 
  
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -36,3 +38,6 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   | [Magic VLSI](http://opencircuitdesign.com/magic/) | Layout Tool |
   | [NGSPICE](https://github.com/imr/ngspice) | SPICE Extraction and Simulation |
   | SPEF_EXTRACTOR | Generation of SPEF file from DEF file |
+
+# Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
+  ## How to talk to computers 
