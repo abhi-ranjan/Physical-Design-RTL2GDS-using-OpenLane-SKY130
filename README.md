@@ -16,10 +16,10 @@ The following repository consists of knowledge gained and steps followed while d
         * [How does an application run on a computer?](#how-does-an-application-run-on-a-computer)
     - [SoC design and OpenLane](#soc-design-and-openlane)
         - [Introduction to Digital Design](#introduction-to-digital-design)
-          * [What is a PDK?](#what-is-a-pdk?)
+          * [What is a PDK?](what-is-a-pdk?)
           * [Environment Setup](#environment-setup)
         - [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
-        - [About OpenLANE and Strive Chipsets](#about-openlane)
+        - [About OpenLANE and Strive Chipsets](#about-openlane-and-strive-chipsets)
     - [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         
     
