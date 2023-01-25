@@ -54,6 +54,8 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   * Pads - These are the itermediate structure through which the internal signals from the core of IC is connected to the external pins of the chip. These pads are organised as Pad Frame. There are different kind of pads for input, output, power supply and ground.
   * Core - It is the place where all the logic units (gates, muxs, etc) are presnet inside the chip. These are able to execute the set of instructions given to the chip and produce an output.
   * Die - It is the block which consists of semiconducting material and it can be used to build certain functional cuircuit which can be further sent for fabrication. It is the entire size of the chip.
+  ![Die](https://user-images.githubusercontent.com/69652104/214504383-203376f6-4efe-40f3-a713-644c64ed1bbc.png)
+
   ### Introduction to RISC-V
   ### Software to Hardware 
   The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
