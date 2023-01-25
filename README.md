@@ -152,8 +152,9 @@ The OpenLANE flow requires various open source tools as well as their supporting
 
 * It has two mode of Operations: Autonomus and Interactive
 * It is tuned for SKYWater 130nm open PDK.
+* OpenLANE ASIC flow is shown below. 
+![image](https://user-images.githubusercontent.com/69652104/214687083-4fadeba1-1a31-4794-9c83-13f924430f3e.png)
 
-![image](https://user-images.githubusercontent.com/69652104/214686084-bcdd37e0-bff2-4c78-9f8b-18d4e3c773ba.png)
-
+* The flow starts with RTL Synthesis
 
 ## Getting familier to open-source EDA tools
