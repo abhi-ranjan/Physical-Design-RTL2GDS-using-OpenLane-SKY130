@@ -69,3 +69,14 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
   #### What happens when we run a program?
   Suppose a C program needs to run on a hardware. So we nned to pass this C program to the hardware. So firstly the C program is compiled into assembly language (RISC-V assembly language program). Now this assmebly language is converted into the machine language program (basically 1's and 0's). Now this 1's and 0's are understanable by the hardware.
+
+#### How does an application run on a computer?
+1. The application software enters the system software (major component of it are OS, Compiler and Assembler). 
+ * The OS handles I/O operations, memories and many low level functions.
+ * then the program passes to Compiler which changes the program to Assembly language (compiled into instructions depends upon the hardware).
+ * Now the instruction set goes to Assembler. Assembler converts the instruction set to machine language (binary numbers). 
+ 
+ ![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
+
+2. The system software converts the apllication software into binary language. 
+3. 
