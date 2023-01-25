@@ -118,14 +118,28 @@ The OpenLANE flow requires various open source tools as well as their supporting
 
 ### Simplified RTL to GDSII Flow
    
+   ![gnome-shell-screenshot-6miv9a](https://user-images.githubusercontent.com/69652104/214678043-5d9b90e2-e05b-42a4-a893-5ab572dd1ff0.png)
+
    The flow starts from the HDL code i.e.RTL model and ends with GDSII file. The major implimenation steps are:
    * Synthesis - During synthesis the HDL design is translated into circuits,  which are made up of components present in the standard cell library. The resultant circuit is described in HDL and its referred as gate level netlist which is functional equivalent of RTL code. The library building block of cell have regular layouts, cell layout is enclosed by fixed height (rectanglar in shape) whereas the width is variable an is discrete i.e., integer multiple of unit call side width.
+   ![image](https://user-images.githubusercontent.com/69652104/214678337-67f65f23-30e9-499d-b5d2-bcdb35758077.png)
    
    * Floor Planning - In Floor planning the chip area is being planned which in turn creates a robust Power distribution to power the circuits. The die is partitioned into different building blocks or components, also the I?O pads are distributed. During macro floor planning macro dimensions, it's pin locations and row definations i.e, rows and routing plan.
+   ![image](https://user-images.githubusercontent.com/69652104/214678571-dbe1e73e-d3cb-4d71-87d3-74a53e9a503b.png)
+   
    * Power Planning - The power network is constructed typically for a chip was it has to power multiple VDD and ground pins. The power pin are connected to all component through rings and multiple horizontal and vertical strips. Sach parallel structure is meant to reduce the resistance.
+   ![gnome-shell-screenshot-12eny2](https://user-images.githubusercontent.com/69652104/214678807-208f9984-65ac-4df7-af16-a0399e19ee49.png)
+
    * Placements - For macros we place the GATE level netlist cell on vertical rows. To reduce the interconnect delay conical cells are placed very close to each other and this is also done to enable successful routing afterwards. Placement is done in two ways Global placement and detailed placement. Global placement provide optimal result and these may or may not be legal where as the detail placement is always legal.
+![image](https://user-images.githubusercontent.com/69652104/214679067-e04bca1c-a4dd-4099-9feb-ab1cb5b1743f.png)
+
    * Clock Tree Synthesis (CTS) - Before signal routing clock routing is done so that the clock distribution is done to every sequential block. Clock distribution network delivers the clock to each of the sequential block. It is done so that there is minimum skew and latency. It usually follows a shape i.e., H-tree, X-tree, etc.
-   * Routing - The signal routing is done using metal layers. It is essential to find valid pattern of 
+![image](https://user-images.githubusercontent.com/69652104/214679269-79bb1c1f-2f82-4857-9248-1f55c18ec41c.png)
+
+   * Routing - The signal routing is done using metal layers. It is essential to find valid pattern of horizontal and verticle wires to implement the nets that connects the cells together. Router uses the available metal layers as defined by the PDK. For each metal layer the PDK defines the thickness, width, pitch and vias. Vias are used to connect two metal wires. SkyWater 130nm has 6 metal layers.
+![image](https://user-images.githubusercontent.com/69652104/214679422-b3ec0d10-5a54-4203-b5b8-705d5245b8a2.png)
+
+   * Verification and Sign-offs - After PnR and CTS we perform verifications, to check whether our layout is valid or not. These verifications consists of Physical verification such as DRC and LVS. Design Rules Checking (DRC) ensures that the layout follows the design rules and Layout Vs Schematic ensures that the final layout is as per the synthesised gate level netlist or not. Finally Static Timing Analysis is done (STA) to make sure that all the timing constraints are met by the circuit.
    
 ### About OpenLANE and Strive Chipsets
 
