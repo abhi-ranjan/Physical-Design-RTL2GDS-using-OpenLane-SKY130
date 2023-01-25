@@ -18,7 +18,7 @@ The following repository consists of knowledge gained and steps followed while d
         * [What is a PDK?](#what-is-a-pdk?)
         * [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         * [Environment Setup](#environment-setup)
-        * [About OpenLANE](#about openlane)
+        * [About OpenLANE](#about-openlane)
     
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
