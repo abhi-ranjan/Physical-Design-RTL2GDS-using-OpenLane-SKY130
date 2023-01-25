@@ -1,4 +1,4 @@
-# Physical Design RTL2GDS using OpenLane/SKY130
+# Advance Physical Design RTL2GDS using OpenLane/SKY130
 The following repository consists of knowledge gained and steps followed while doing the Advanced Physical Design Using [OpenLANE/SKY130](https://openlane.readthedocs.io/en/latest/) workshop. The [workshop](https://www.vlsisystemdesign.com/advanced-physical-design-using-openlane-sky130/) focuses on the complete ASIC flow approach from RTL2GDS using open soucrce EDA tools such as OpenLANE/SKY130. RISC-V architechture is followed for designing the the core of [PICORV32A](https://github.com/YosysHQ/picorv32).
 # Table of Content
   * [About RTL to GDSII Flow](#about-rtl-to-gdsii-flow)
@@ -45,6 +45,15 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
 # Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
   ## How to talk to computers
   ### IC Terminologies
+  In the complete flow to this RTL2GDS physical designing there are lot of terminologies one comes across. Some of these terms are described below.
+  * Package - ICs are basically presents as packages. These packages are materials which contains the semiconductor device. These packages protect the device from damage. these are of various kind. An example of QFN-48 (Quad Falt No-Leads) with 48 pins is taken here.
+  
+  ![package](https://user-images.githubusercontent.com/69652104/214497117-07e825ff-26dc-4a42-ac74-d103bdcaa6d5.png)
+
+  * Chip - It sits in the centre of the package. The chip is connected to the package pins using **wire bond**. Inside the chip we have various components such as pad, core, interconnects, etc.
+  * Pads - These are the itermediate structure through which the internal signals from the core of IC is connected to the external pins of the chip. These pads are organised as Pad Frame. There are different kind of pads for input, output, power supply and ground.
+  * Core - It is the place where all the logic units (gates, muxs, etc) are presnet inside the chip. These are able to execute the set of instructions given to the chip and produce an output.
+  * Die - It is the block which consists of semiconducting material and it can be used to build certain functional cuircuit which can be further sent for fabrication. It is the entire size of the chip.
   ### Introduction to RISC-V
   ### Software to Hardware 
   The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
