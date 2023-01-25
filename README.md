@@ -57,7 +57,7 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   ![Die](https://user-images.githubusercontent.com/69652104/214504383-203376f6-4efe-40f3-a713-644c64ed1bbc.png)
 
   ### Introduction to RISC-V
-  **RISC-V** is an open instruction set architechture rooted on **reduced instruction set computer principles**. It is an open source ISA used for processor design. 
+  **[RISC-V](https://riscv.org/technical/specifications/)** is an open instruction set architechture rooted on **reduced instruction set computer principles**. It is an open source ISA used for processor design. 
   #### RISC-V Characterstics
   * It uses one clock cycle per instruction.
   * It follows the th RISC Princples. 
