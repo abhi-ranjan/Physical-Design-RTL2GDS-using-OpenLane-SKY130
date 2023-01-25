@@ -19,7 +19,9 @@ The following repository consists of knowledge gained and steps followed while d
         * [What is a PDK?](#what-is-a-pdk?)
         * [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         * [Environment Setup](#environment-setup)
-        * [About OpenLANE](#about-openlane)
+        * [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
+        * [About OpenLANE and Strive Chipsets](#about-openlane)
+        
     
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -113,4 +115,6 @@ PDKs acts as an inteface between the FABs and the designeers. PDKs have collecti
 ### Getting familier to open-source EDA tools
 ### Environment Setup
 The OpenLANE flow requires various open source tools as well as their supporting tools to be installed for the complete Physical design flow. Installing this tools one by one is tedious as well as one can get lost in the steps. Installation can be done easily using some set of scripts present in following repositories [VSDFlow](https://github.com/kunalg123/vsdflow) (for installing Yosys, OpenSTA, Magic, OpenTimer, netgent, etc)  and [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script).
-### About OpenLANE
+
+### Simplified RTL to GDSII Flow
+### About OpenLANE and Strive Chipsets
