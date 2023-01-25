@@ -17,10 +17,10 @@ The following repository consists of knowledge gained and steps followed while d
     - [SoC design and OpenLane](#soc-design-and-openlane)
         * [Introduction to Digital Design](#introduction-to-digital-design)
         * [What is a PDK?](#what-is-a-pdk?)
-        * [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         * [Environment Setup](#environment-setup)
         * [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
         * [About OpenLANE and Strive Chipsets](#about-openlane)
+    - [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         
     
 # About RTL to GDSII Flow
@@ -112,9 +112,11 @@ PDK stands for Process Design Kit, it is provided by foundaries and it consists 
 PDKs acts as an inteface between the FABs and the designeers. PDKs have collection of files whcih are used to model a fabrication process for the EDA tools used to design an IC. PDK consists of tecnology node information, Process Design Rules (to verify DRC, LVC, PEX, etc), device model, I/O libraries, Standard cell libraries, macros files, lef files, etc.
 
 **Google along with SKYWater made the laters PDK opensource (130 nm node).** The PDK only need data information for successful implementation.
-### Getting familier to open-source EDA tools
+
 ### Environment Setup
 The OpenLANE flow requires various open source tools as well as their supporting tools to be installed for the complete Physical design flow. Installing this tools one by one is tedious as well as one can get lost in the steps. Installation can be done easily using some set of scripts present in following repositories [VSDFlow](https://github.com/kunalg123/vsdflow) (for installing Yosys, OpenSTA, Magic, OpenTimer, netgent, etc)  and [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script).
 
 ### Simplified RTL to GDSII Flow
 ### About OpenLANE and Strive Chipsets
+
+## Getting familier to open-source EDA tools
