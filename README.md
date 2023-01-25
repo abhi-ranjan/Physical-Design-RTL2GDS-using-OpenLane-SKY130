@@ -19,7 +19,7 @@ The following repository consists of knowledge gained and steps followed while d
           * [What is a PDK?](what-is-a-pdk?)
           * [Environment Setup](#environment-setup)
         - [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
-        - [About OpenLANE and Strive Chipsets](#about-openlane-and-strive-chipsets)
+        - [About OpenLANE](#about-openlane)
     - [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         
     
@@ -147,6 +147,13 @@ The OpenLANE flow requires various open source tools as well as their supporting
 
    * Verification and Sign-offs - After PnR and CTS we perform verifications, to check whether our layout is valid or not. These verifications consists of Physical verification such as DRC and LVS. Design Rules Checking (DRC) ensures that the layout follows the design rules and Layout Vs Schematic ensures that the final layout is as per the synthesised gate level netlist or not. Finally Static Timing Analysis is done (STA) to make sure that all the timing constraints are met by the circuit.
    
-### About OpenLANE and Strive Chipsets
+### About OpenLANE
+[OpenLANE](https://openlane.readthedocs.io/en/latest/) is a flow which uses various open source tools for the RTL to GDSII flow. It has the striVe family of open everything SoCs (Open PDK, Open EDA, Open RTL). The various tools it uses are Yosys, OpenROAD, Magic, Netgen, SPEF_Extraction, etc.  
+
+* It has two mode of Operations: Autonomus and Interactive
+* It is tuned for SKYWater 130nm open PDK.
+
+![image](https://user-images.githubusercontent.com/69652104/214686084-bcdd37e0-bff2-4c78-9f8b-18d4e3c773ba.png)
+
 
 ## Getting familier to open-source EDA tools
