@@ -79,3 +79,5 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
 3. Now these binary numbers enter our chip layout and according the function is performed.
 
 ![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
+
+## SoC design and OpenLane
