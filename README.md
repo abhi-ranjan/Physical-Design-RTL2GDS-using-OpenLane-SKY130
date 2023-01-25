@@ -15,6 +15,7 @@ The following repository consists of knowledge gained and steps followed while d
         * [What happens when we run a program?](#what-happens-when-we-run-a-program)
         * [How does an application run on a computer?](#how-does-an-application-run-on-a-computer)
     - [SoC design and OpenLane](#soc-design-and-openlane)
+        * [Introduction to Digital Design](#introduction-to-digital-design)
         * [What is a PDK?](#what-is-a-pdk?)
         * [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
         * [Environment Setup](#environment-setup)
@@ -92,6 +93,7 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
 ![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
 
 ## SoC design and OpenLane
+### Introduction to Digital design
 For designing Digital ASIC ICs we require following components and some of it's opensource resources are also mentioned. 
  * RTL models (old IP's) {github.com, librecores.org, etc}
  * EDA tool {OpenROAD, OpenLANE, etc}
