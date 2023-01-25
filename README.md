@@ -57,5 +57,13 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   ![Die](https://user-images.githubusercontent.com/69652104/214504383-203376f6-4efe-40f3-a713-644c64ed1bbc.png)
 
   ### Introduction to RISC-V
+  **RISC-V** is an open instruction set architechture rooted on **reduced instruction set computer principles**. It is an open source ISA used for processor design. 
+  #### RISC-V Characterstics
+  * It uses one clock cycle per instruction.
+  * It follows the th RISC Princples. 
+  * It has both 32-bit and 64-bit varients. It also support floating point instruction.
+  * It avoids micro-architechture or technology dependent features.
+  * It accelerates the time for design to reach the market as it uses open-source IP.
+  
   ### Software to Hardware 
   The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
