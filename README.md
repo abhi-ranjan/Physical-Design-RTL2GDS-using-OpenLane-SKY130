@@ -64,6 +64,8 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
   * It has both 32-bit and 64-bit varients. It also support floating point instruction.
   * It avoids micro-architechture or technology dependent features.
   * It accelerates the time for design to reach the market as it uses open-source IP.
-  
+  #### What happens when we run a program?
+  Suppose a C program needs to run on a hardware. So we nned to pass this C program to the hardware. So firstly the C program is compiled into assembly language (RISC-V assembly language program). Now this assmebly language is converted into the machine language program (basically 1's and 0's). Now this 1's and 0's are understanable by the hardware.
+
   ### Software to Hardware 
   The flow shows how the high level language (at software end) gets converted to machine language (at hardware end) and then gets executed on the package.
