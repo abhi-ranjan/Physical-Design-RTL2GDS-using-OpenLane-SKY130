@@ -75,8 +75,7 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
  * The OS handles I/O operations, memories and many low level functions.
  * then the program passes to Compiler which changes the program to Assembly language (compiled into instructions depends upon the hardware).
  * Now the instruction set goes to Assembler. Assembler converts the instruction set to machine language (binary numbers). 
- 
- ![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
-
 2. The system software converts the apllication software into binary language. 
-3. 
+3. Now these binary numbers enter our chip layout and according the function is performed.
+
+![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
