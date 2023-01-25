@@ -81,5 +81,23 @@ It is an open-source VLSI flow created using open source tools. Basically it is 
 ![image](https://user-images.githubusercontent.com/69652104/214534459-5706003b-cec0-4cf9-b8a9-73463cfb434e.png)
 
 ## SoC design and OpenLane
+For designing Digital ASIC ICs we require following components. 
+ * RTL models (old IP's)
+ * EDA tool
+ * PDK Data
+ 
+ In the workshop every component is used from sources which are open soucre. The following image gives an idea about each component as an open source resource. 
+
+![image](https://user-images.githubusercontent.com/69652104/214576102-b48d6010-44a6-466a-b9cb-62adcb012c5e.png)
+
+ 
+### what is a PDK? 
+PDK stands for Process Design Kit, it is provided by foundaries and it consists of library or set of building blocks which are used to build ICs. Each component in the library is seperate building bolck and ae made following certain foundary rules.
+
+PDKs acts as an inteface between the FABs and the designeers. PDKs have collection of files whcih are used to model a fabrication process for the EDA tools used to design an IC. PDK consists of tecnology node information, Process Design Rules (to verify DRC, LVC, PEX, etc), device model, I/O libraries, Standard cell libraries, macros files, lef files, etc.
+
+**Google along with SKYWater made the laters PDK opensource (130 nm node).** The PDK only need data information for successful implementation.
+## Getting familier to open-source EDA tools
 ### Environment Setup
-The OpenLANE flow requires various open source tools as well as their supporting tools to be installed for the complete Physical design flow. Installing this tools one by one is tedious as well as one can get lost in the steps. Installation can be done easily using some set of scripts present in following repositories [VSDFlow](https://github.com/kunalg123/vsdflow) (for installing Yosys, OpenSTA, MAgic, OpenTimer, netgent, etc)  and [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script).
+The OpenLANE flow requires various open source tools as well as their supporting tools to be installed for the complete Physical design flow. Installing this tools one by one is tedious as well as one can get lost in the steps. Installation can be done easily using some set of scripts present in following repositories [VSDFlow](https://github.com/kunalg123/vsdflow) (for installing Yosys, OpenSTA, Magic, OpenTimer, netgent, etc)  and [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script).
+### About OpenLANE
