@@ -397,6 +397,16 @@ Here basically the ceated files are being checkd using the log files presen in t
     
     ![image](https://user-images.githubusercontent.com/69652104/214932703-7cd63e42-bc32-4ffd-9cfa-4ca511f0e38d.png)
     
+    - setting the core utilization, verticle and horizontal metal layer by add these three switchs in the config.tcl file
+    
+    ``
+    set ::env(FP_CORE_UTIL) 65
+
+set ::env(FP_IO_VMETAL) 4
+
+set ::env(FP_IO_HMETAL) 3
+``
+    
 * Viewing Floorplan
 
 The def (design exchange format) file is created in the floorplan folder of the results folder under runs folder. This file has the information about the die area. This gives the co-ordinates of the die and the unit is databse unit per micron i.e. 1 micron = 1000 database units)
@@ -413,6 +423,8 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 
 **Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sup>2</sup>**
 
+**Step 3:** Review floorplan layout in Magic
+
 * Using Magic tool to view the def file 
 
 The following command can be used to invoke magic tool as well as open the def file:
@@ -421,6 +433,9 @@ The following command can be used to invoke magic tool as well as open the def f
 magic -T /home/kunalg123/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
 ``
 
+To center the view, press "s" to select whole die then press "v" to center the view. Point the cursor to a cell then press "s" to select it, zoom into it by pressing 'z". Type "what" in tkcon to display information of selected object. These objects might be IO pin, decap cell, or well taps as shown below.
 
-**Step 3:** 
+The genrated file is shown below: 
+
+![image](https://user-images.githubusercontent.com/69652104/214947957-92a584f1-e87d-4fcb-a176-dd2f0b992401.png)
 
