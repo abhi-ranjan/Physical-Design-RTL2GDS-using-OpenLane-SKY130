@@ -190,15 +190,21 @@ The following content is specific to the workshop. There are lot of other files 
 
 ### LAB Day 1
 
-**Step 1:** Running OpenLane
+**Step 1:** Starting OpenLane
 * Go to openlane folder.
 
-> cd work/tools/openlane_working_dir/openlane
+```
+cd work/tools/openlane_working_dir/openlane
+```
 
 * Then run the **docker** command.
 
-> docker
+```
+docker
+```
 
 * Now run the **flow.tcl** file with interactive mode.
 
-> ./flow.tcl -interactive
+```
+./flow.tcl -interactive
+```
