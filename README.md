@@ -24,7 +24,10 @@ The following repository consists of knowledge gained and steps followed while d
        - [Contents of the OpenLANE Directory](#contents-of-the-openlane-directory)
        - [LAB Day 1](#lab-day-1)
        - [TASK 1: Finding the d flip flop ratio](#TASK-1-finding-the-d-flip-flop-ratio)
-    
+* [Day 2 - Good floorplan vs bad floorplan and introduction to library cells](#day-1---good-floorplan-vs-bad-floorplan-and-introduction-to-library-cells)
+    - [Chip Floor planning](#chip-floor-planning)
+      * [Utilization factor and aspect ratio](#utilization-factor-and-aspect-ratio)
+      
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
 The complete flow consists of following steps:
@@ -292,6 +295,8 @@ The synthesis statisttics report is as follows:
 
 ![image](https://user-images.githubusercontent.com/69652104/214804520-5c19f30a-3315-40b1-9f66-cb5d6c9f6189.png)
 
-
+# Day 2 - Good floorplan vs bad floorplan and introduction to library cells
+## Chip Floor planning
+### Utilization factor and aspect ratio
 
 
