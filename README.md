@@ -23,7 +23,7 @@ The following repository consists of knowledge gained and steps followed while d
     - [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
        - [Contents of the OpenLANE Directory](#contents-of-the-openlane-directory)
        - [LAB Day 1](#lab-day-1)
-       - [TASK 1: Finding the d flip flop ratio](#TASK-1:-finding-the-d-flip-flop-ratio)
+       - [TASK 1: Finding the d flip flop ratio](#TASK-1-finding-the-d-flip-flop-ratio)
     
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
