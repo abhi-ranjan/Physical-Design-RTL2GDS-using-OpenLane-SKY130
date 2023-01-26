@@ -214,3 +214,7 @@ docker
 % package require openlane 0.9
 ```
 ![image](https://user-images.githubusercontent.com/69652104/214776839-62677619-ff6f-40f0-8ce1-d13500bb9491.png)
+
+* Now we are good to go to execute our commands.
+
+**NOTE** - The above commands are to be run everytime we use OpenLANE for RTL2GDSII flow.
