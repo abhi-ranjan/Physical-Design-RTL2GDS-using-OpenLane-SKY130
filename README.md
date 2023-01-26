@@ -189,9 +189,9 @@ The following content is specific to the workshop. There are lot of other files 
 **NOTE:** - Here **sky130_fd_sc_hd libs.tech** is being used.
 4. config files - It bypasses any configuration that has already been done i.e., many of the switches use default value that is already present in the OpenLane flow.
 **The precedence order of Openlane settings are:**
-* Default value (already set in OpenLane)
-* config.tcl
 * sky130_xyz_config.tcl
+* config.tcl
+* Default value (already set in OpenLane)
 
 ### LAB Day 1
 
@@ -216,7 +216,7 @@ docker
 * Now import packages
 
 ```
-% package require openlane 0.9
+package require openlane 0.9
 ```
 ![image](https://user-images.githubusercontent.com/69652104/214776839-62677619-ff6f-40f0-8ce1-d13500bb9491.png)
 
@@ -246,7 +246,7 @@ less config.tcl
 * Creating file for our design i.e., setting up the design. It merges the cell LEF files and the technology LEF files generating merged.lef which is present in the temp folder.
 
 ```
-% prep -design picorv32a
+prep -design picorv32a
 ```
 
 ![image](https://user-images.githubusercontent.com/69652104/214783771-fdd2623b-1b9c-4a92-acd2-633521396d50.png)
@@ -260,7 +260,7 @@ This marks the creation of new folder inside picorv32a named as runs folder whic
 Yosys synthesis is run when the command for synthesis is entered. Along with it abc scripts are also run and OpenSTA is also run.
 
 ```
-% run_synthesis
+run_synthesis
 ```
 
 After running systhesis logs, reports and results are created.
@@ -342,3 +342,21 @@ After pin placement it should be made sure that the remaining empty area between
 ![image](https://user-images.githubusercontent.com/69652104/214906520-25443bef-e78a-4edf-9b71-e592b91424c2.png)
 
 **Voila!! we are done with Floor and Power Planning.**
+
+**NPTE: Standard cell placement happens in placement stage.**
+
+### LAB Day 2
+
+Continuation after synthesis.
+
+**Step 1:** 
+* We have lot of switches with which we adjust the flow directory. These switches are used to set certain parameter in each stage of the flow. For eg: In the Floorplanning stage we have `FP_CORE_UTIL {for utilization percentage}, `FP_ASPECT_RATIO {sets the aspect ratio}, `FP_CORE_MARGINS{offset b/w die boundary and core boundary}, etc. We have certain .tcl file in OpenLane which has these switchs that sets these specifications. 
+ 
+**floorplan.tcl contains the following default switchs**
+
+![image](https://user-images.githubusercontent.com/69652104/214922065-9a283cce-6623-42b9-b754-94a26c2e3e1c.png)
+
+* The command to run floorplan is:
+``
+run_floorplan
+``
