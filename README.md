@@ -354,14 +354,23 @@ Continuation after synthesis.
 
 ``
 ├── README.md      
+
 ├── checkers.tcl
+
 ├── cts.tcl
+
 ├── floorplan.tcl  
+
 ├── general.tcl
+
 ├── lvs.tcl
+
 ├── placement.tcl
+
 ├── routing.tcl
+
 └── synthesis.tcl
+
 ``
  
 **floorplan.tcl contains the following default switchs**
