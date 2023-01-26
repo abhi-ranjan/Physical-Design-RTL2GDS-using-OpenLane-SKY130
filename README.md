@@ -238,7 +238,7 @@ less config.tcl
 
 ![image](https://user-images.githubusercontent.com/69652104/214781041-9641cea7-25be-45f5-8faa-d1fcf7792781.png)
 
-* Creating file for our design i.e., setting up the design. It merges the cell LEF files and the technology LEF files generating merged.lef which is present in the temp folder. 
+* Creating file for our design i.e., setting up the design. It merges the cell LEF files and the technology LEF files generating merged.lef which is present in the temp folder.
 
 ```
 % prep -design picorv32a
@@ -249,5 +249,47 @@ less config.tcl
 This marks the creation of new folder inside picorv32a named as runs folder which consists of new folder whose name is the date on which the command is run. The following folder has results, reports, command logs, PDK Sources, etc files.
 
 ![image](https://user-images.githubusercontent.com/69652104/214785655-161be74d-583d-4241-8c5f-581fecd4f96f.png)
+
+**Step 3:** Running Synthesis
+
+Yosys synthesis is run when the command for synthesis is entered. Along with it abc scripts are also run and OpenSTA is also run.
+
+```
+% run_synthesis
+```
+
+After running systhesis logs, reports and results are created.
+
+The report folder have the following files: 
+1. 1-yosys_4.chk.rpt
+2. 1-yosys_4.stat.rpt
+3. 1-yosys_dff.stat
+4. 1-yosys_pre.stat
+5. 2-opensta.min_max.rpt
+6. 2-opensta.rpt
+7. 2-opensta.slew.rpt
+8. 2-opensta.timing.rpt
+9. 2-opensta_tns.rpt
+10. 2-opensta_wns.rpt
+
+Also a netlis file is created in the results --> symthesis folder named **picorv32a.synthesis.v**
+
+### TASK 1 Finding the d flip flop ratio
+
+Count of d flip flop (sky130_fd_sc_hd_dfxtp_2) = 1613 
+
+![image](https://user-images.githubusercontent.com/69652104/214802678-3f3dfeb9-047d-453c-a5cc-746851bd6b7e.png)
+
+Number of cells = 14876 
+
+![image](https://user-images.githubusercontent.com/69652104/214803214-dc216e45-52d6-49e2-84d6-80f61c3cd41b.png)
+
+**flop ratio = count of d flip flops / number of cells = 1613/14876 = 0.108429 (10.8429 %)
+
+The synthesis statisttics report is as follows: 
+
+![image](https://user-images.githubusercontent.com/69652104/214804520-5c19f30a-3315-40b1-9f66-cb5d6c9f6189.png)
+
+
 
 
