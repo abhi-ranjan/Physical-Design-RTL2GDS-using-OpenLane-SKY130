@@ -213,6 +213,7 @@ docker
 ```
 ./flow.tcl -interactive
 ```
+
 * Now import packages
 
 ```
@@ -398,12 +399,10 @@ Here basically the ceated files are being checkd using the log files presen in t
     ![image](https://user-images.githubusercontent.com/69652104/214932703-7cd63e42-bc32-4ffd-9cfa-4ca511f0e38d.png)
     
     - setting the core utilization, verticle and horizontal metal layer by add these three switchs in the config.tcl file
-    
-    ```
-    set ::env(FP_CORE_UTIL) 65
 
+```
+set ::env(FP_CORE_UTIL) 65
 set ::env(FP_IO_VMETAL) 4
-
 set ::env(FP_IO_HMETAL) 3
 ```
     
