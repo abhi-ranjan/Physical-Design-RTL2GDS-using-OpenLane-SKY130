@@ -357,6 +357,7 @@ Continuation after synthesis.
 ![image](https://user-images.githubusercontent.com/69652104/214922065-9a283cce-6623-42b9-b754-94a26c2e3e1c.png)
 
 * The command to run floorplan is:
+
 ``
 run_floorplan
 ``
