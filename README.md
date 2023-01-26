@@ -297,6 +297,8 @@ The synthesis statisttics report is as follows:
 
 # Day 2 - Good floorplan vs bad floorplan and introduction to library cells
 ## Chip Floor planning
-### Utilization factor and aspect ratio
 
+
+
+### Utilization factor and aspect ratio
 
