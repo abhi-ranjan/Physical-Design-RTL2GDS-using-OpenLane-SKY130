@@ -352,7 +352,7 @@ Continuation after synthesis.
 **Step 1:** Running floorplan
 * We have lot of switches with which we adjust the flow directory. These switches are used to set certain parameter in each stage of the flow. For eg: In the Floorplanning stage we have `FP_CORE_UTIL {for utilization percentage}`, `FP_ASPECT_RATIO {sets the aspect ratio}`, `FP_CORE_MARGINS {offset b/w die boundary and core boundary}`, etc. We have certain .tcl file in OpenLane which has these switchs that sets these specifications. 
 
-``
+```
 ├── README.md      
 
 ├── checkers.tcl
@@ -371,7 +371,7 @@ Continuation after synthesis.
 
 └── synthesis.tcl
 
-``
+```
  
 **floorplan.tcl contains the following default switchs**
 
