@@ -218,3 +218,31 @@ docker
 * Now we are good to go to execute our commands.
 
 **NOTE** - The above commands are to be run everytime we use OpenLANE for RTL2GDSII flow.
+
+**Step 2:** Design Preperation
+* Knowing the contents of our design (picorv32a) folder.
+
+1. src
+2. sky130A_sky130_fd_sc_ns_config.tcl
+3. sky130A_sky130_fd_sc_ls_config.tcl
+4. sky130A_sky130_fd_sc_hs_config.tcl
+5. sky130A_sky130_fd_sc_hdl_config.tcl
+6. sky130A_sky130_fd_sc_hd_config.tcl
+7. config.tcl
+
+Checking our config.tcl file values by running the below command in picorv32a folder (it has clock period of 5 unit) 
+
+```
+less config.tcl
+```
+
+![image](https://user-images.githubusercontent.com/69652104/214781041-9641cea7-25be-45f5-8faa-d1fcf7792781.png)
+
+* Creating file for our design i.e., setting up the design
+
+```
+% prep -design picorv32a
+```
+
+![image](https://user-images.githubusercontent.com/69652104/214783771-fdd2623b-1b9c-4a92-acd2-633521396d50.png)
+
