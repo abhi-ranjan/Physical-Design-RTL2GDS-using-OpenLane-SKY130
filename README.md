@@ -324,4 +324,21 @@ The pre-placed cells needs to be surrounded by De-coupling capacitors.  Whenever
 
 ### Power planning
 
-There a lot of macros on a chip and if each macro has it's current demand so there will be lot of de-coupling capacitor which is not feasible. Therefore, some critical blocks are decoupled using de-coupling cap but not for each element. There is always a posibility of voltage drop at certain node in the circuit 
+There a lot of macros on a chip and if each macro has it's current demand so there will be lot of de-coupling capacitor which is not feasible. Therefore, some critical blocks are decoupled using de-coupling cap but not for each element. There is always a posibility of voltage drop at certain node in the circuit. Suppose there is a 16 caps connected in parallel and all are going to switch from logic 1 to logic 0 i.e., caps are discharging and all this connected to same ground. All of these caps discharge at same time then there is a ground bounce (bump at the ground) and if the size of the bump exceeds the noise margin then it might enter into undefined state. Also when all the caps try to charge from 0 to 1 then there is a voltage droop (demanding of power at the same time) and again the noise margin concept applies here too. 
+This problem happens only because there is power supply at one point, if there is power supply present in the entire perpherry then this problem is resolved. Hence solution to above problem is multiple power supply and ground. Therefore we have multiple VDD and VSS ports.
+
+![image](https://user-images.githubusercontent.com/69652104/214900463-5e79bce2-a802-440e-86d2-7a25f999fe30.png)
+
+### Pin Placement and logical cell placement blockage
+
+The connectivity information betweer the gates is codded using VHDL/Verilog language and is called as the netlist.
+
+There are pre-placed cells already present in the core. The area between the core and die are filled with the input and output ports. The I/O ports placement depends upon the cells connected to these ports as well as the pre-place cells. The clock ports are bigger in size as these are continously driven pins and these drives the complete chip. So we need the least resistance path for the clocks hence clock pins are thickers.
+ 
+ ![image](https://user-images.githubusercontent.com/69652104/214906268-ef591691-ea25-4da1-a155-3ef1b9b1c055.png)
+
+After pin placement it should be made sure that the remaining empty area between the core and the die is blocked. Therefore logical cell placement bloackage is done. Hence it ensures that automated placement and routing does not place anything in this area.
+
+![image](https://user-images.githubusercontent.com/69652104/214906520-25443bef-e78a-4edf-9b71-e592b91424c2.png)
+
+**Voila!! we are done with Floor and Power Planning.**
