@@ -390,15 +390,14 @@ run_floorplan
 
 Here basically the ceated files are being checkd using the log files presen in the `log/floorpla/4-ioPlacer.log`. In case it is not there we can check it using the Magic tool.
 
-    - for floorplan the core utilization is 50%
+ - for floorplan the core utilization is 50%
     
-    ![image](https://user-images.githubusercontent.com/69652104/214932840-71d0969f-196f-4e3f-a163-141fdc0b8174.png)
+![image](https://user-images.githubusercontent.com/69652104/214932840-71d0969f-196f-4e3f-a163-141fdc0b8174.png)
+ - for config.tcl file under the runs folder core utilization is 35%.
     
-    - for config.tcl file under the runs folder core utilization is 35%.
+![image](https://user-images.githubusercontent.com/69652104/214932703-7cd63e42-bc32-4ffd-9cfa-4ca511f0e38d.png)
     
-    ![image](https://user-images.githubusercontent.com/69652104/214932703-7cd63e42-bc32-4ffd-9cfa-4ca511f0e38d.png)
-    
-    - setting the core utilization, verticle and horizontal metal layer by add these three switchs in the config.tcl file
+ - setting the core utilization, verticle and horizontal metal layer by add these three switchs in the config.tcl file
 
 ```
 set ::env(FP_CORE_UTIL) 65
