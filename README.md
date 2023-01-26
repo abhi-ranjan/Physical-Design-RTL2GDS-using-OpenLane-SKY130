@@ -411,7 +411,7 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 
 **NOTE: 1 micron is equivalent to 1000 database units**
 
-**Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sub>2</sub>**
+**Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sup>2</sup>**
 
 **Step 3:** 
 
