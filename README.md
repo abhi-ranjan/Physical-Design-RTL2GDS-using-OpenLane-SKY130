@@ -155,6 +155,8 @@ The OpenLANE flow requires various open source tools as well as their supporting
 * OpenLANE ASIC flow is shown below. 
 ![image](https://user-images.githubusercontent.com/69652104/214687083-4fadeba1-1a31-4794-9c83-13f924430f3e.png)
 
-* The flow starts with RTL Synthesis
+* The flow starts with RTL Synthesis. RTL is fed to Yosys with the design constraints. Yosys translates the RTL into a logic circuit using generic components. 
+* the circuit can be optimized and then mapped with standard cell library usin the tool abc. There are abc scrript to guide the optimization. OpenLANE has several abc scripts which has different synthesis statergies (least area, least power consumption, etc). The synthesis exploration utility is for statergy exploration and report generation.
+* OpenLANE has design exploration utility which can be used to sweep the design configurations (16 in total) and it genrates reports which has different design matrix and also shows the number of violations in layout. It is used to find the best configuration of our design. 
 
 ## Getting familier to open-source EDA tools
