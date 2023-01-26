@@ -15,13 +15,15 @@ The following repository consists of knowledge gained and steps followed while d
         * [What happens when we run a program?](#what-happens-when-we-run-a-program)
         * [How does an application run on a computer?](#how-does-an-application-run-on-a-computer)
     - [SoC design and OpenLane](#soc-design-and-openlane)
-        - [Introduction to Digital Design](#introduction-to-digital-design)
-          * [What is a PDK?](what-is-a-pdk?)
-          * [Environment Setup](#environment-setup)
-        - [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
-        - [About OpenLANE](#about-openlane)
+       - [Introduction to Digital Design](#introduction-to-digital-design)
+         * [What is a PDK?](what-is-a-pdk?)
+         * [Environment Setup](#environment-setup)
+       - [Simplified RTL to GDSII Flow](#simplified-rtl-to-gdsii-flow)
+       - [About OpenLANE](#about-openlane)
     - [Getting familier to open-source EDA tools](#getting-familier-to-open-source-eda-tools)
-        
+       - [Contents of the OpenLANE Directory](#contents-of-the-openlane-directory)
+       - [LAB Day 1](#lab-day-1)
+       - [TASK 1: Finding the d flip flop ratio](#TASK-1:-finding-the-d-flip-flop-ratio)
     
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -274,7 +276,7 @@ The report folder have the following files:
 
 Also a netlis file is created in the results --> symthesis folder named **picorv32a.synthesis.v**
 
-### TASK 1 Finding the d flip flop ratio
+### TASK 1: Finding the d flip flop ratio
 
 Count of d flip flop (sky130_fd_sc_hd_dfxtp_2) = 1613 
 
