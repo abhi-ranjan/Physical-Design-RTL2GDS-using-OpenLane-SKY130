@@ -289,7 +289,7 @@ Number of cells = 14876
 
 ![image](https://user-images.githubusercontent.com/69652104/214803214-dc216e45-52d6-49e2-84d6-80f61c3cd41b.png)
 
-**flop ratio = count of d flip flops / number of cells = 1613/14876 = 0.108429 (10.8429 %)
+**flop ratio = count of d flip flops / number of cells = 1613/14876 = 0.108429 (10.8429 %)**
 
 The synthesis statisttics report is as follows: 
 
@@ -382,6 +382,36 @@ Continuation after synthesis.
 ``
 run_floorplan
 ``
+
 **Step 2:** Review floorplan files and steps to view floorplan
 
+* Reviewing files
+
 Here basically the ceated files are being checkd using the log files presen in the `log/floorpla/4-ioPlacer.log`. In case it is not there we can check it using the Magic tool.
+
+    - for floorplan the core utilization is 50%
+    
+    ![image](https://user-images.githubusercontent.com/69652104/214932840-71d0969f-196f-4e3f-a163-141fdc0b8174.png)
+    
+    - for config.tcl file under the runs folder core utilization is 35%.
+    
+    ![image](https://user-images.githubusercontent.com/69652104/214932703-7cd63e42-bc32-4ffd-9cfa-4ca511f0e38d.png)
+    
+* Viewing Floorplan
+
+The def (design exchange format) file is created in the floorplan folder of the results folder under runs folder. This file has the information about the die area. This gives the co-ordinates of the die and the unit is databse unit per micron i.e. 1 micron = 1000 database units)
+
+![image](https://user-images.githubusercontent.com/69652104/214935860-e584d395-802b-4f7c-9e8e-2e3e3e7efbee.png)
+
+The die co-ordinates and other information can be viewed using following command invoked under the picorv32a folder.
+
+``
+cd runs/[date]/results/floorplan/picorv32a.floorplan.def
+``
+
+**NOTE: 1 micron is equivalent to 1000 database units**
+
+**Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sub>2</sub>**
+
+**Step 3:** 
+
