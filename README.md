@@ -349,8 +349,20 @@ After pin placement it should be made sure that the remaining empty area between
 
 Continuation after synthesis.
 
-**Step 1:** 
-* We have lot of switches with which we adjust the flow directory. These switches are used to set certain parameter in each stage of the flow. For eg: In the Floorplanning stage we have `FP_CORE_UTIL {for utilization percentage}, `FP_ASPECT_RATIO {sets the aspect ratio}, `FP_CORE_MARGINS{offset b/w die boundary and core boundary}, etc. We have certain .tcl file in OpenLane which has these switchs that sets these specifications. 
+**Step 1:** Running floorplan
+* We have lot of switches with which we adjust the flow directory. These switches are used to set certain parameter in each stage of the flow. For eg: In the Floorplanning stage we have `FP_CORE_UTIL {for utilization percentage}`, `FP_ASPECT_RATIO {sets the aspect ratio}`, `FP_CORE_MARGINS {offset b/w die boundary and core boundary}`, etc. We have certain .tcl file in OpenLane which has these switchs that sets these specifications. 
+
+``
+├── README.md      
+├── checkers.tcl
+├── cts.tcl
+├── floorplan.tcl  
+├── general.tcl
+├── lvs.tcl
+├── placement.tcl
+├── routing.tcl
+└── synthesis.tcl
+``
  
 **floorplan.tcl contains the following default switchs**
 
@@ -361,3 +373,6 @@ Continuation after synthesis.
 ``
 run_floorplan
 ``
+**Step 2:** Review floorplan files and steps to view floorplan
+
+Here basically the ceated files are being checkd using the log files presen in the `log/floorpla/4-ioPlacer.log`. In case it is not there we can check it using the Magic tool.
