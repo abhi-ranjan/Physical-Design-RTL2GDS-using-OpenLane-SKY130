@@ -399,13 +399,13 @@ Here basically the ceated files are being checkd using the log files presen in t
     
     - setting the core utilization, verticle and horizontal metal layer by add these three switchs in the config.tcl file
     
-    ``
+    ```
     set ::env(FP_CORE_UTIL) 65
 
 set ::env(FP_IO_VMETAL) 4
 
 set ::env(FP_IO_HMETAL) 3
-``
+```
     
 * Viewing Floorplan
 
@@ -415,9 +415,9 @@ The def (design exchange format) file is created in the floorplan folder of the 
 
 The die co-ordinates and other information can be viewed using following command invoked under the picorv32a folder.
 
-``
+```
 cd runs/[date]/results/floorplan/picorv32a.floorplan.def
-``
+```
 
 **NOTE: 1 micron is equivalent to 1000 database units**
 
@@ -429,11 +429,11 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 
 The following command can be used to invoke magic tool as well as open the def file:
 
-``
+```
 magic -T /home/kunalg123/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
-``
+```
 
-To center the view, press "s" to select whole die then press "v" to center the view. Point the cursor to a cell then press "s" to select it, zoom into it by pressing 'z". Type "what" in tkcon to display information of selected object. These objects might be IO pin, decap cell, or well taps as shown below.
+To center the view, press "s" to select whole die then press "v" to center the view. Point the cursor to a cell then press "s" to select it, zoom into it by pressing 'z". Type "what" in `tkcon` to display information of selected object. These objects might be IO pin, decap cell, or well taps as shown below.
 
 The genrated file is shown below: 
 
