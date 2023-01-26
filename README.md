@@ -437,3 +437,20 @@ The genrated file is shown below:
 
 ![image](https://user-images.githubusercontent.com/69652104/214947957-92a584f1-e87d-4fcb-a176-dd2f0b992401.png)
 
+The horizontal and verticle pins:
+
+![image](https://user-images.githubusercontent.com/69652104/214963933-767ae5f6-a79d-4460-814b-a3b2bba33853.png) file:///tmp/gnome-shell-screenshot-bi9cdc.png
+
+The decap cells: 
+
+![gnome-shell-screenshot-45vknb](https://user-images.githubusercontent.com/69652104/214964586-21457bd5-c1a5-4f51-a5aa-467eaed4e7d9.png)
+
+The diagonally equidistant tapcells: 
+
+![image](https://user-images.githubusercontent.com/69652104/214965422-0c9ffde3-c770-4f84-b8d8-5c0c3af134ba.png)
+
+The standard cells in the bottom left corner:
+
+![image](https://user-images.githubusercontent.com/69652104/214965088-1ae98625-9e9c-4936-a235-017b543f6704.png)
+
+
