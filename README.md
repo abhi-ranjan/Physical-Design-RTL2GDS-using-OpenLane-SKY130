@@ -296,14 +296,20 @@ The synthesis statisttics report is as follows:
 ![image](https://user-images.githubusercontent.com/69652104/214804520-5c19f30a-3315-40b1-9f66-cb5d6c9f6189.png)
 
 # Day 2 - Good floorplan vs bad floorplan and introduction to library cells
+
 ## Chip Floor planning
+Here we try to come up with the width and height of the chip.
+
+### Utilization factor and aspect ratio
+
 1. Determining width and height of the core and die
  While defining the dimensions of the chip we are mostly dependent on the dimensions of the logic gates (standard cells) sitting in the netlist. <!-- Let's try to give a proper length and width to all the standard cell (say rectangular to all), so we are intreseted in the dimesions of the standard cell not the wire for core and die. Lets say the std cell have dimension of 1 uint to 1 unit for each std cell with the help of this we will try to find the area utilised by the cells. So we bring all the cells together ignoring the wires and we can calculate the total area as well as dimensions. Now we have rough idea about the area of our netlist. So now place all the logic cells in the core.so we get the utilization of our core. --> 
 2. Core is the section where fundamental logic is being place whereas a die is a small semiconductor material specimen on which the fundamental circuit is fabricated and it consists of core. 
 3. Once the logic is placed in the core it utilizes certain amount of core which is characterised by utilization factor (Area occupied by netlist / total area of the core). If utilization factor = 1 it means 100% utilization, hence no extra cells could be added. Therefore in a practical scenario the core utilization factor is always less than 1. Hence we generally go for 50-60% utilization. utilization factor = 0.5-0.6)
 4. Another important consideration is aspec ratio ((height)/(width) of the core). If aspect ratio = 1 it means the chip is square in nature. 
 
-Here we try to come up with the width and height of the chip.
+### Concept of pre-placed cells
 
-### Utilization factor and aspect ratio
+Generally the utilization factor is less than 1, hence we have some un used section of core. These unused section of the core is used for optimization and other things. In the unused section we place additional cells, used for routing, etc. 
 
+Pre-placed cells - It is based on the concept of reusable modules or IP's. These blocks need not be implemented everytime we need to use it, these blocks are functionally implemented sometime in the past i.e., only once (for eg - memory, clock-gating, vomparator, mux,etc). These cells are called pre-placed ceels. It's needed to define the placement of these cells or IP's in a chip before routing. These have fixed places on the chip defined by the user. Since these cells are placed before placement and routing hence these are called Pre-placed cells. Automated placement and routing tools does not touch these cell positions. <!-- These a certain combinational logic (mux, freq divider, etc). These logic does such a big task that is has 100000s of gate. So there is a way by which we need not develop this circuitary everytime but we can take a piece of the circuit and implement it seperatly by dividing the circut. -->
