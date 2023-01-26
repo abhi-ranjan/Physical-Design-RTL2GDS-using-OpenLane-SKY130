@@ -180,4 +180,25 @@ The following content is specific to the workshop. There are lot of other files 
 * open pdk consists of the scripts.
 * sky130A pdk consists of the libs.ref (has files specific to process such as timing, lef-both tech and cell) and libs.tech (has all the files specific to the tool) files.
 * skywater pdk consists of skywater 130 nm pdks.
+
 **NOTE:** - Here **sky130_fd_sc_hd libs.tech** is being used.
+4. config files - It bypasses any configuration that has already been done i.e., many of the switches use default value that is already present in the OpenLane flow.
+**The precedence order of Openlane settings are:**
+* Default value (already set in OpenLane)
+* config.tcl
+* sky130_xyz_config.tcl
+
+### LAB Day 1
+
+**Step 1:** Running OpenLane
+* Go to openlane folder.
+
+> cd work/tools/openlane_working_dir/openlane
+
+* Then run the **docker** command.
+
+> docker
+
+* Now run the **flow.tcl** file with interactive mode.
+
+> ./flow.tcl -interactive
