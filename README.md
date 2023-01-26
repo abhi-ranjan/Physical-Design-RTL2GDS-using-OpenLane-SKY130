@@ -413,5 +413,14 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 
 **Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sup>2</sup>**
 
+* Using Magic tool to view the def file 
+
+The following command can be used to invoke magic tool as well as open the def file:
+
+``
+magic -T /home/kunalg123/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
+``
+
+
 **Step 3:** 
 
