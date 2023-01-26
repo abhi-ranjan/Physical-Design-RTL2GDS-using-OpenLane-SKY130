@@ -171,3 +171,13 @@ The OpenLANE flow requires various open source tools as well as their supporting
 * Physical signoffs include DRC and LVS. DRC and LVS is performed using Magic tool. Circuit extraction is done NetGen.
 
 ## Getting familier to open-source EDA tools
+### Contents of the OpenLANE Directory
+
+The following content is specific to the workshop. There are lot of other files present in the directory too.
+1. **OpenLane folder** - It contains all the tools and the file that need to be invoked during the flow.
+2. **Designs** - This folder consists of all the designs requried during the flow (picorv32a is the design used in this workshop)
+3. PDKs - This folder contains all the pdk related files as well as information. (open pdk, Sky130, Skywater pdk).
+* open pdk consists of the scripts.
+* sky130A pdk consists of the libs.ref (has files specific to process such as timing, lef-both tech and cell) and libs.tech (has all the files specific to the tool) files.
+* skywater pdk consists of skywater 130 nm pdks.
+**NOTE:** - Here **sky130_fd_sc_hd libs.tech** is being used.
