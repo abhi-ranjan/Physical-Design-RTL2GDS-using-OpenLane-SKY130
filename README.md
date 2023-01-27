@@ -586,4 +586,31 @@ PDN is created during floorplan. But is Openlane there is a post floorplan, post
 Here we will be dive deep into the flow. We will take a .mag file and do post-layout simulation in ngspice. After post-characterising we will be plugging this cell into the openlane flow i.e., into picorv32a core. 
 
 * IO Placer revision
-Earlier we had equidistant placed input/output pins. Now lets say we want to change it to some othe input/output pin statergy (there are four statergies supported by IO Placer - the tool that we use for IO placement). So we can change the switch (variable) and this will change the statergy. WE CAN COPY THE
+Earlier we had equidistant placed input/output pins. Now lets say we want to change it to some othe input/output pin statergy (there are four statergies supported by IO Placer - the tool that we use for IO placement). So we can change the switch (variable) and this will change the statergy and this can be done directly by setting the variable through the terminal and then re-run the floorplan. 
+
+```
+EXAMPLE - changing PIN configuration
+set ::env(FP_IO_MODE) 2;
+run_floorplan
+
+Then check the layout by launching Magic again.
+```
+
+* SPICE deck creation for CMOS inverter
+
+Here we will do SPICE simulation and deriving the charactestic on real time MOSFETs.  
+
+#### Creating SPICE deck
+
+1. SPICE Deck - It is a connectivity information about a cell. It is a netlist. It has the inputs, tap points, etc.
+
+2. We need to define the component parameter i.e., value for PMS and NMOS. For us value of W/L of PMOS M1 (0.375u/o.25u) and NMOS M2 (0.375u/0.25). Ideally PMOS should be 2 or 3 times wider than NMOS. The load cap is assumed to be 10 fF. 
+
+3. We assume an input supply voltage value (GATE) as 2.5 V and main supply voltage (at drain) as 2.5 V. Generally the supply voltage (GATE) is multiple of length.
+
+4. Now we need to identify the node (those two point in b/w there is a component) and name these nodes.
+
+The SPICE Deck is written below: 
+
+```
+*** MODEL Description ***
