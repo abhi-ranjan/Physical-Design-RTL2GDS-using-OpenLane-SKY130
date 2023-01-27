@@ -506,5 +506,10 @@ During place a number of tools such as RePlace tool (for global placement), Resi
 ```
 magic -T /home/nickson/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
+
+The genrated layout:
+
+![image](https://user-images.githubusercontent.com/69652104/215020126-f1327f84-003f-4238-80ea-bd78921117b0.png)
+
 Placement ensures that the standard cells are correctly placed. 
 PDN is created during floorplan. But is Openlane there is a post floorplan, post placement and CTS is done for PDN.
