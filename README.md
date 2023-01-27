@@ -473,7 +473,7 @@ The genrated file is shown below:
 
 The horizontal and verticle pins:
 
-![image](https://user-images.githubusercontent.com/69652104/214963933-767ae5f6-a79d-4460-814b-a3b2bba33853.png) file:///tmp/gnome-shell-screenshot-bi9cdc.png
+![image](https://user-images.githubusercontent.com/69652104/214963933-767ae5f6-a79d-4460-814b-a3b2bba33853.png)
 
 The decap cells: 
 
