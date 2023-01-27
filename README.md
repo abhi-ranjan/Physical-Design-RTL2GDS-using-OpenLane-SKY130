@@ -361,9 +361,9 @@ After pin placement it should be made sure that the remaining empty area between
 
     Placement in OpenLANE is done in two stages:
 
-* Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model.
+* Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model. 
 
-* Detailed Placement - legalization happens here the std. cells are placed in std cell rows. They shoulde be exactly inside the row and the should be abutted on each other and there should be no overlap.
+* Detailed Placement - legalization happens here the std. cells are placed in std cell rows. {legalization - They shoulde be exactly inside the row and the should be abutted on each other and there should be no overlap}.
 
 The main ain of placement now is congestion, it is not the timing analysis.
 The next step will be CTS. 
@@ -376,9 +376,13 @@ Placement with buffers
 
 ![image](https://user-images.githubusercontent.com/69652104/214977547-4198edb6-b2e9-49d1-888d-4c75422d5aa9.png)
 
+Our objective is to converge the value of Overflow (it is present below HPWL value during run_placement. If the value of overflow decreases our design will converge. Now we can see the generayed .def file in the placement folder under results using the Magic tool.
+
 <!-- Slew is dependented upon the value of cap. The higher the value more is the charge required to charge the cap and the slew will be bad Abutment has lot of advantage STA is done to know maximum achievable frequency-->
 
 **NOTE: ** Collection of gates in an area is called as library. 
+
+
 
 ### LAB Day 2
 
@@ -462,7 +466,7 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 The following command can be used to invoke magic tool as well as open the def file:
 
 ```
-magic -T /home/kunalg123/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
+magic -T /home/kunalg123/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &f
 ```
 
 To center the view, press "s" to select whole die then press "v" to center the view. Point the cursor to a cell then press "s" to select it, zoom into it by pressing 'z". Type "what" in `tkcon` to display information of selected object. These objects might be IO pin, decap cell, or well taps as shown below.
@@ -487,4 +491,20 @@ The standard cells in the bottom left corner:
 
 ![image](https://user-images.githubusercontent.com/69652104/214965088-1ae98625-9e9c-4936-a235-017b543f6704.png)
 
+**Step 4:** Running Placement
 
+The following command is used to run placement.
+
+```
+run_placement
+```
+
+During place a number of tools such as RePlace tool (for global placement), Resier tool (for optimization) and OpenDP (for detailed placement) is invoked. If the value of overflow converges then the design is legal.
+
+* Using Magic tool to see the layout of this stage.
+
+```
+magic -T /home/nickson/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+Placement ensures that the standard cells are correctly placed. 
+PDN is created during floorplan. But is Openlane there is a post floorplan, post placement and CTS is done for PDN.
