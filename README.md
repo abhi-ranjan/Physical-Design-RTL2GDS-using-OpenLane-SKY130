@@ -391,9 +391,9 @@ In IC design flow a library is a place where we keep all our standard cells, buf
 Cell design flow is divided into three parts: `inputs`,`design steps` and `outputs`.
 1. Inputs - Inputs to design an inverter is basically the PDKs which consists of DRC & LVS rules, SPICE models, library and user-defined specs.
 
-  - DRC & LVS Rules = These are the technology rules defined by the foundary. tech files and poly subtrate paramters (CUSTOME LAYOUT COURSE)
+  - DRC & LVS Rules - These are the technology rules defined by the foundary. tech files and poly subtrate paramters (CUSTOME LAYOUT COURSE)
   
-  - SPICE Models = These consists of all the parameters based on the foundary for eg: Threshold voltage, linear regions, saturation region equations with added foundry parameters. Including NMOS and PMOS parameteres (Ciruit Deisgn and Spice simulation Course)
+  - SPICE Models - These consists of all the parameters based on the foundary for eg: Threshold voltage, linear regions, saturation region equations with added foundry parameters. Including NMOS and PMOS parameteres (Ciruit Deisgn and Spice simulation Course)
   
   - User defined Spec = These are the specifications given by the user which is to be achieved by following the DRC and LVS rules. Maintaining Cell height (separation between power and ground rail), Cell width (depends on drive strength), supply voltage(provided by top level, keep noise margin in check), metal layer requirement (which metal layer the cell needs to work), pin location, drawn gate length, etc.
   
@@ -408,9 +408,34 @@ Now we have all the inputs with us (available with the library developers). Now 
  ```
   Steps in layout design:
   1. Get the function implemented using CMOS.
-  2. Get a PMOS and NMOS network graph out of the implemented circuit.
-  3
+  2. Get a PMOS and NMOS network graph out of the implemented circuit. (using Euler's method)
+  3. Obtain the Euler's path, it is a path that is traced only once.
+  4. Draw the stick diagram.
+  5. Convert the stick diagram into layout adhering with the DRC rules given by the foundary. 
+  
+  The layout is generated using Magic tool .Now we have the cell width and cell height and all the cells adhere to the rules.
  ```
+ We can extract the parasitics from the layout and we have characterise it with respect to timing.
+ 
+ 3. Outputs - The output of the layout desgn is GDSII. Lef defines the width and height of the cells. It also gives extracted spice netlist. 
+
+Now we will do chararacterisation and we will generate timing, noise, power libs function. Here we will try to understande various syntax and symantic of timing.lib, power.lib and noise.lib. These syntax are important to understand the GUNA software i.e., the characterisation software because software works on these variables and these are the variables present with us in order to feed into the software. 
+
+![image](https://user-images.githubusercontent.com/69652104/215085932-a7f32902-9301-41a1-9f64-3a51c48022ef.png)
+
+* Timing charaterisation 
+Here we first understand different threshold point of waveform itself called as timing threshold defination.
+
+Consider the above two inverter figure and understand the graph below. red curve - input to the circuit at 2nd inverter, blue curve - output of the circuit after 2nd inverter. We have slew deniation shown in the figure below for both rising and falling edge. 
+With help of all the timing threshold defination we are able to calculate our slew as well as the propagation delay.
+
+![image](https://user-images.githubusercontent.com/69652104/215087548-7cd83b79-ed29-4d35-b016-3eb9b53dd497.png)
+
+Similarly we have threshold for the delays (rise and fall) as we had for slew hence we analyse the waveform for the delays. 
+
+![image](https://user-images.githubusercontent.com/69652104/215088264-4f3bb6a3-164a-4ef9-a9cb-645be44ba1fb.png) ![image](https://user-images.githubusercontent.com/69652104/215088308-bccc81ac-78ee-4110-8479-b4f8a5623aad.png)
+
+Getting a negative propagation delay is highly unexpected. A negative propagation delay means that the output comes before the input. Hence to avoid negative propagation delay we as designer need to choose correct threshold points which eventually leads to positive delays. Propagation delay threshold is usually 50% and slew rate threshold is 20-80%.
 
 ### LAB Day 2
 
