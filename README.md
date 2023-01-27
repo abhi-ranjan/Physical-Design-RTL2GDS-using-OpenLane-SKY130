@@ -647,7 +647,7 @@ plot out vs in
 
 * Vm (switching threshold voltage) - The point where exact transition takes place i.e., Vin = Vout. At this point both the MOS are in saturation and we have a high leakage current (direct current flowing from vdd to ground). If the pull up network is strong the VTC moves towards right (Vm' > Vm) and if pull down network is strong then VTC shifts leftwards (Vm' < Vm).
 
-** Formula for Vm **
+**Formula for Vm**
 
 ![image](https://user-images.githubusercontent.com/69652104/215190239-b570e8c4-41c6-4bae-a399-2f27f1114903.png)
 
