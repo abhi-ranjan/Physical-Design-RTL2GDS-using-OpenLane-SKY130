@@ -713,6 +713,8 @@ The generated layout:
 
 We try to analyse the layout part by part using the `what` command in tkcon window. 
 
+![image](https://user-images.githubusercontent.com/69652104/215220543-9ba085f3-cb83-439f-aed3-19d0cdb946cd.png)
+
 lef (library exchange format) - it has all the information about metal layers. It also protect the IP.
 
 def (design exchange format)
@@ -728,6 +730,8 @@ To extract it on SPICE, type these command in the tkcon window:
 * create an .ext file - `extract all` (extracted in vsdstdcelldesign folder)
 * We will use this ext file to buide our SPICE file which can be used with the ngspice tool. Doing this will extract all the parasitics  too.
 
+![image](https://user-images.githubusercontent.com/69652104/215221055-ec9e80d7-02c2-4112-bb3d-30871cf4dffa.png)
+
 ```
 ext2spice cthresh 0 rthresh 0 
 ext2spice
@@ -738,3 +742,8 @@ ext2spice
 ```
 vim sky130_inv.spice
 ```
+
+![image](https://user-images.githubusercontent.com/69652104/215221808-7a0cb458-9db6-488f-b3b2-039efd5c45c7.png)
+
+So our stand cell and extracted SPICE model is now present with us.
+
