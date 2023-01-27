@@ -359,6 +359,15 @@ After pin placement it should be made sure that the remaining empty area between
 
 Based on ideal condition of the clock (time required by clock to reach a component is 0) we will do setup timing analysis and based on this we will check our placement condition is meeting the given specification or not.
 
+Placement in OpenLANE is done in two stages:
+
+1. Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model.
+
+2. Detailed Placement - legalization happens here the std. cells are placed in std cell rows. They shoulde be exactly inside the row and the should be abutted on each other and there should be no overlap.
+
+The main ain of placement now is congestion, it is not the timing analysis.
+The next step will be CTS. 
+
 Placement before buffer insertion: 
 
 ![image](https://user-images.githubusercontent.com/69652104/214977372-22400c76-ebfe-4d5f-b4c9-0715352351b0.png)
@@ -367,7 +376,9 @@ Placement with buffers
 
 ![image](https://user-images.githubusercontent.com/69652104/214977547-4198edb6-b2e9-49d1-888d-4c75422d5aa9.png)
 
-<!-- Slew is dependented upon the value of cap. The higher the value more is the charge required to charge the cap and the slew will be bad Abutment has lot of advantage-->
+<!-- Slew is dependented upon the value of cap. The higher the value more is the charge required to charge the cap and the slew will be bad Abutment has lot of advantage STA is done to know maximum achievable frequency-->
+
+**NOTE: ** Collection of gates in an area is called as library. 
 
 ### LAB Day 2
 
