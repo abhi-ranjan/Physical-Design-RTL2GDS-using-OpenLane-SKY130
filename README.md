@@ -382,7 +382,27 @@ Our objective is to converge the value of Overflow (it is present below HPWL val
 
 **NOTE: ** Collection of gates in an area is called as library. 
 
+## Cell design and characterization flows
 
+In IC design flow a library is a place where we keep all our standard cells, buffers, decap cell, etc. The library does not only have different cells with different functionality but it also have same cell with different sizes, threshold voltage, delays, etc. 
+
+* Examining an inverter
+
+Cell design flow is divided into three parts: `inputs`,`design steps` and `outputs`.
+1. Inputs - Inputs to design an inverter is basically the PDKs which consists of DRC & LVS rules, SPICE models, library and user-defined specs.
+
+  - DRC & LVS Rules = These are the technology rules defined by the foundary. tech files and poly subtrate paramters (CUSTOME LAYOUT COURSE)
+  
+  - SPICE Models = These consists of all the parameters based on the foundary for eg: Threshold voltage, linear regions, saturation region equations with added foundry parameters. Including NMOS and PMOS parameteres (Ciruit Deisgn and Spice simulation Course)
+  
+  - User defined Spec = These are the specifications given by the user which is to be achieved by following the DRC and LVS rules. Maintaining Cell height (separation between power and ground rail), Cell width (depends on drive strength), supply voltage(provided by top level, keep noise margin in check), metal layer requirement (which metal layer the cell needs to work), pin location, drawn gate length, etc.
+  
+<!--higher the drive strength lower wire it can drive.-->
+
+Now we have all the inputs with us (available with the library developers). Now the developer should take the input and come up with std cells that adheres to these specs and rules.
+
+2. Design steps - It has three different steps: `circuit design`,`layout design` and `characterisation`.
+  - circuit design includes the implentation of the logic and the modeling W/l ratio of NMOS and PMOS.
 
 ### LAB Day 2
 
