@@ -586,4 +586,4 @@ PDN is created during floorplan. But is Openlane there is a post floorplan, post
 Here we will be dive deep into the flow. We will take a .mag file and do post-layout simulation in ngspice. After post-characterising we will be plugging this cell into the openlane flow i.e., into picorv32a core. 
 
 * IO Placer revision
-Earlier we had equidistant placed input/output pins. 
+Earlier we had equidistant placed input/output pins. Now lets say we want to change it to some othe input/output pin statergy (there are four statergies supported by IO Placer - the tool that we use for IO placement). So we can change the switch (variable) and this will change the statergy. WE CAN COPY THE
