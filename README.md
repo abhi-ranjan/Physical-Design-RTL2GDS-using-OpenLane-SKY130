@@ -747,3 +747,12 @@ vim sky130_inv.spice
 
 So our stand cell and extracted SPICE model is now present with us.
 
+## LAB DAY 3 (PART 3)
+
+The above SPICE model give connectivity information of our inverter. Now for transient analysis we have to define the connections.   
+* We want VGND to be connected to VSS
+* We want supply voltage (VDD) to be connected form VPWR to VSS (ground).
+* So we create a node 0 and give VDD = 3V. 
+* Then we give pulse voltage between A and VGND (VSS). 
+
+We need to ensure that scaling is proper. (set to grid value specified in the layout). We can check the dimension of a grid in layout by the command `box`. 
