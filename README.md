@@ -614,3 +614,61 @@ The SPICE Deck is written below:
 
 ```
 *** MODEL Description ***
+*** NETLIST Description ***
+M1 out in vdd vdd pmos W=o.375 L=0.25 *** `[component name]` `[connectivity]` [drain] [gate] [source] [substrate] `[type]` `[dimensions W/L]` ***
+*** Similarly for NMOS ***
+M2 out in vdd vdd nmos W=o.375 L=0.25
+*** load cap connecivity and value `[name]` `[node1]` `[node2]` `[value]` ***
+cload out 0 10f
+*** Supply voltage `[name]` `[node1]` `[node2]` `[value]` ***
+Vdd vdd 0 2.5
+*** Input voltage `[name]` `[node1]` `[node2]` `[value]` ***
+Vin in 0 2.5
+*** Simulation Command ***
+.op
+.dc Vin 0 2.5 0.05 *** Sweeping gate input form 0 to 2.5 at steeps of 0.05  VTC curve***
+*** describe the model file ***
+.LIB "tsmc_025ummodel.mod" CMOS_MODELS
+.end
+```
+![image](https://user-images.githubusercontent.com/69652104/215171406-497c0875-89da-400a-b95c-c01d4fe298eb.png)
+
+First invoke the ngspice and then run the following command to simulate:
+
+```
+source [filename].cir
+run
+setplot 
+dc1 
+plot out vs in 
+```
+
+#### Analysing the inverter
+
+* Vm (switching threshold voltage) - The point where exact transition takes place i.e., Vin = Vout. At this point both the MOS are in saturation and we have a high leakage current (direct current flowing from vdd to ground). If the pull up network is strong the VTC moves towards right (Vm' > Vm) and if pull down network is strong then VTC shifts leftwards (Vm' < Vm).
+
+*Formula for Vm*
+![image](https://user-images.githubusercontent.com/69652104/215190239-b570e8c4-41c6-4bae-a399-2f27f1114903.png)
+
+* Propagation delay - The difference between the time when output as well as input is at 50%. ( o/p falls and i/p rises gives fall delay, o/p rises and i/p falls gives us the rise delay)
+
+* We can furter do transient analysis.
+
+### LAB SETUP
+
+* We will first git clone one of the repo (it is custom made for the workshop). Here we have .mag file for INVERTER, model file for sky130nm PMOS and NMOS. We will creat a ful view cell and then we will plug it into our flow. 
+
+The command for git clone is (run it while you are in the openlane directory):
+
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+```
+It will create vsdstdcelldesign design folder. 
+
+We need to have the tech file to open the mag file. We will copy the tech file to our directory. the tech file is present in the sky130A which is inside pdks folder. To copy 
+
+```
+cp sky130A.tech/[location]
+```
+
+Now invoke magic too to see the mag file i.e., layout of the inverter.
