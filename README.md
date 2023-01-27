@@ -421,19 +421,20 @@ Now we have all the inputs with us (available with the library developers). Now 
 
 Now we will do chararacterisation and we will generate timing, noise, power libs function. Here we will try to understande various syntax and symantic of timing.lib, power.lib and noise.lib. These syntax are important to understand the GUNA software i.e., the characterisation software because software works on these variables and these are the variables present with us in order to feed into the software. 
 
+* Timing charaterisation 
+
 ![image](https://user-images.githubusercontent.com/69652104/215085932-a7f32902-9301-41a1-9f64-3a51c48022ef.png)
 
-* Timing charaterisation 
 Here we first understand different threshold point of waveform itself called as timing threshold defination.
 
 Consider the above two inverter figure and understand the graph below. red curve - input to the circuit at 2nd inverter, blue curve - output of the circuit after 2nd inverter. We have slew deniation shown in the figure below for both rising and falling edge. 
 With help of all the timing threshold defination we are able to calculate our slew as well as the propagation delay.
 
-![image](https://user-images.githubusercontent.com/69652104/215087548-7cd83b79-ed29-4d35-b016-3eb9b53dd497.png)
+![image](https://user-images.githubusercontent.com/69652104/215090838-a064c684-1e07-4b99-8d5c-0b47b19bbdfe.png)
 
 Similarly we have threshold for the delays (rise and fall) as we had for slew hence we analyse the waveform for the delays. 
 
-![image](https://user-images.githubusercontent.com/69652104/215088264-4f3bb6a3-164a-4ef9-a9cb-645be44ba1fb.png) ![image](https://user-images.githubusercontent.com/69652104/215088308-bccc81ac-78ee-4110-8479-b4f8a5623aad.png)
+![image](https://user-images.githubusercontent.com/69652104/215091498-c0d76565-9b7b-41fa-9c04-6c20fe0cd85b.png)
 
 Getting a negative propagation delay is highly unexpected. A negative propagation delay means that the output comes before the input. Hence to avoid negative propagation delay we as designer need to choose correct threshold points which eventually leads to positive delays. Propagation delay threshold is usually 50% and slew rate threshold is 20-80%.
 
