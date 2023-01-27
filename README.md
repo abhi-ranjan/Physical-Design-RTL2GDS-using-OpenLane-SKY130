@@ -361,9 +361,9 @@ After pin placement it should be made sure that the remaining empty area between
 
     Placement in OpenLANE is done in two stages:
 
-1. Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model.
+* Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model.
 
-2. Detailed Placement - legalization happens here the std. cells are placed in std cell rows. They shoulde be exactly inside the row and the should be abutted on each other and there should be no overlap.
+* Detailed Placement - legalization happens here the std. cells are placed in std cell rows. They shoulde be exactly inside the row and the should be abutted on each other and there should be no overlap.
 
 The main ain of placement now is congestion, it is not the timing analysis.
 The next step will be CTS. 
