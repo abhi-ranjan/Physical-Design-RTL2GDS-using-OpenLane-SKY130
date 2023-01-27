@@ -357,9 +357,9 @@ After pin placement it should be made sure that the remaining empty area between
 
 3. Till now we have kept o/p port near the output and input port near the input. Now using some estimations we will try to do optimized placement. We can try to estimate the capacitances and resistance b/w two point. The wirelength will form a resistanace which will cause unnecessary voltage drop and a capacitance which will cause a slew rate that might not be permissible for fast current switching of logic gates. Successfully transmitting the signal from one place to another without any loss is known as signal eintegrity. To maintain the signal integrity we require repeaters (kind of buffers) and these are inserted as per the wire length and capacitance and based on these cap and resistance, a waveform is genrated and the transition of the waveform should be in permisible range. But now we have loss of area. Hence where integrity is maintained there we do not place any repeaters but if integrity not maintained the we insert the buffer (repeater). We need to come to a conclusion with minimum number of repeater. Sometime we also do abutment where logic cells are placed very close to each other (almost zero delay) if it has to run at high frequency (2GHz). Crisscrossing of routes is a normal for PnR and it can be avoided by use separate metal layer (using vias) for crisscrossed path.
 
-Based on ideal condition of the clock (time required by clock to reach a component is 0) we will do setup timing analysis and based on this we will check our placement condition is meeting the given specification or not.
+    Based on ideal condition of the clock (time required by clock to reach a component is 0) we will do setup timing analysis and based on this we will       check our placement condition is meeting the given specification or not.
 
-Placement in OpenLANE is done in two stages:
+    Placement in OpenLANE is done in two stages:
 
 1. Global Placement - It's main job is to reduce the wire length. It is generally a coarse placement. Here no leaglization happens. Here the concept of **HPWL** (Half Parameter Wirelength) reduction model.
 
