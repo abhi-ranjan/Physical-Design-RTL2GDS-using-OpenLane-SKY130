@@ -26,7 +26,13 @@ The following repository consists of knowledge gained and steps followed while d
        - [TASK 1: Finding the d flip flop ratio](#TASK-1-finding-the-d-flip-flop-ratio)
 * [Day 2 - Good floorplan vs bad floorplan and introduction to library cells](#day-1---good-floorplan-vs-bad-floorplan-and-introduction-to-library-cells)
     - [Chip Floor planning](#chip-floor-planning)
-      * [Utilization factor and aspect ratio](#utilization-factor-and-aspect-ratio)
+       - [Utilization factor and aspect ratio](#utilization-factor-and-aspect-ratio)
+       - [Concept of pre-placed cells](#concept-of-pre---placed-cells)
+       - [De-coupling capacitors](#de---coupling-capacitors)
+       - [Power planning](#power-planning)
+       - [Pin Placement and logical cell placement blockage](#pin-placement-and-logical-cell-placement-blockage)
+       - [Placement and routing](#placement-and-routing)
+       - [LAB Day 2](#lab-day-2)
       
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -567,3 +573,10 @@ The genrated layout:
 
 Placement ensures that the standard cells are correctly placed. 
 PDN is created during floorplan. But is Openlane there is a post floorplan, post placement and CTS is done for PDN.
+
+# Day 2 - Design library cell using Magic Layout and ngspice characterization
+
+## LAB Day 2
+
+## Labs for CMOS inverter ngspice simulations
+* IO Placer
