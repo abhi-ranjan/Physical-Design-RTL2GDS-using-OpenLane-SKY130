@@ -664,12 +664,37 @@ The command for git clone is (run it while you are in the openlane directory):
 ```
 git clone https://github.com/nickson-jose/vsdstdcelldesign.git
 ```
+
+![image](https://user-images.githubusercontent.com/69652104/215198686-f1b96d3a-a348-464b-a9b7-ba996d51ca7d.png)
+
 It will create vsdstdcelldesign design folder. 
 
-We need to have the tech file to open the mag file. We will copy the tech file to our directory. the tech file is present in the sky130A which is inside pdks folder. To copy 
+We need to have the tech file to open the mag file. We will copy the tech file to our directory. the tech file is present in the sky130A which is inside pdks folder. 
+The tech file is present at this location `work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic`.
 
 ```
-cp sky130A.tech/[location]
+cd work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/
 ```
 
-Now invoke magic too to see the mag file i.e., layout of the inverter.
+To copy go to the location and then type the command given below with target location
+
+```
+cp sky130A.tech /[target location]
+
+target location for our case - /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+
+```
+
+Now invoke magic tool in the vsdstdcelldesign folder to see the mag file i.e., layout of the inverter.
+
+Command 
+
+```
+magic -T [tech file] [.mag file]
+tech file = sky130A.tech .mag file = sky130_inv.mag
+```
+
+The generated layout:
+
+![image](https://user-images.githubusercontent.com/69652104/215205628-74e0252a-8d08-4697-b3fc-cb93d1dfc547.png)
+
