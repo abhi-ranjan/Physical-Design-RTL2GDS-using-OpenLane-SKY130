@@ -403,6 +403,14 @@ Now we have all the inputs with us (available with the library developers). Now 
 
 2. Design steps - It has three different steps: `circuit design`,`layout design` and `characterisation`.
   - circuit design includes the implentation of the logic and the modeling W/l ratio of NMOS and PMOS.
+  - Implementation of the circuit description language (i.e., output of the circuit design) is called layout design. 
+ 
+ ```
+  Steps in layout design:
+  1. Get the function implemented using CMOS.
+  2. Get a PMOS and NMOS network graph out of the implemented circuit.
+  3
+ ```
 
 ### LAB Day 2
 
