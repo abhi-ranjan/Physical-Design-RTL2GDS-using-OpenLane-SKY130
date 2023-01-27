@@ -580,7 +580,7 @@ PDN is created during floorplan. But is Openlane there is a post floorplan, post
 
 # Day 3 - Design library cell using Magic Layout and ngspice characterization
 
-## LAB Day 3
+## LAB Day 3 (Part 1)
 
 ## Labs for CMOS inverter ngspice simulations
 Here we will be dive deep into the flow. We will take a .mag file and do post-layout simulation in ngspice. After post-characterising we will be plugging this cell into the openlane flow i.e., into picorv32a core. 
@@ -698,3 +698,42 @@ The generated layout:
 
 ![image](https://user-images.githubusercontent.com/69652104/215205628-74e0252a-8d08-4697-b3fc-cb93d1dfc547.png)
 
+## Inception of Layout Â CMOS fabrication process (16 mask process) 
+
+1. Selecting a substrate 
+2. Creating active region for transistor 
+3. N-Well and P-Well Fabrication 
+4. Formation of Gate
+5. Lightly Doped Drain formation
+6. Source and Drain Formation
+7. Form Contacts and Interconnects
+8. Higher Level Metal Formation 
+
+## LAB DAY 3 (PART 2)
+
+We try to analyse the layout part by part using the `what` command in tkcon window. 
+
+lef (library exchange format) - it has all the information about metal layers. It also protect the IP.
+
+def (design exchange format)
+
+To implement the complete CMOS inverter click [here](https://github.com/nickson-jose/vsdstdcelldesign).
+
+Magic is interactive FRC tool. If we have DRC it will show automatically. For our design we do not ahve any DRC violation. We need to ensure that our final design in DRC clean. 
+
+To know the logical function of the inverter we first extract the SPICE. Post that we will do simulation the file using ngspice.
+
+To extract it on SPICE: 
+* create an .ext file - `extract all` (extracted in vsdstdcelldesign folder)
+* We will use this ext file to buide our SPICE file which can be used with the ngspice tool. Doing this will extract all the parasitics  too.
+
+```
+ext2spice cthresh 0 rthresh 0 
+ext2spice
+```
+
+* seeing whats inside the spice file. 
+
+```
+vim sky130_inv.spice
+```
