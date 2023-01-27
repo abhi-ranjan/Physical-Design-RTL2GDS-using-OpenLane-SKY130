@@ -344,7 +344,30 @@ After pin placement it should be made sure that the remaining empty area between
 
 **Voila!! we are done with Floor and Power Planning.**
 
-**NPTE: Standard cell placement happens in placement stage.**
+**NOTE: Standard cell placement happens in placement stage.**
+
+### Placement and routing
+
+* Netlist binding and initial place design
+1. Lets suppose the shape of the gate determine the functionality of the gate but in reality each gate is a black box. Hence we take each gate and give them a physical dimensions. This is done for each of the component of the netlist. These cells are present in a library which consists the following  information and files shape and size, delays, various flavour of the cells and the timing information. Library akso orvide options with different delay and sizes. Particular cell is chosen as per our requirement.
+
+![image](https://user-images.githubusercontent.com/69652104/214969249-20d0f22a-4c0d-4f70-b9f5-392cb42a2c2a.png)
+
+2. Next step is to take the particular shap and sizes and then place it on the floorplan. The pre-placed cells are not disturbed. During placement logical connectivity is maintained as well as the placement is done in such a way that optimized path is formed (i.e., blocks placed close to there input and output) 
+
+3. Till now we have kept o/p port near the output and input port near the input. Now using some estimations we will try to do optimized placement. We can try to estimate the capacitances and resistance b/w two point. The wirelength will form a resistanace which will cause unnecessary voltage drop and a capacitance which will cause a slew rate that might not be permissible for fast current switching of logic gates. Successfully transmitting the signal from one place to another without any loss is known as signal eintegrity. To maintain the signal integrity we require repeaters (kind of buffers) and these are inserted as per the wire length and capacitance and based on these cap and resistance, a waveform is genrated and the transition of the waveform should be in permisible range. But now we have loss of area. Hence where integrity is maintained there we do not place any repeaters but if integrity not maintained the we insert the buffer (repeater). We need to come to a conclusion with minimum number of repeater. Sometime we also do abutment where logic cells are placed very close to each other (almost zero delay) if it has to run at high frequency (2GHz). Crisscrossing of routes is a normal for PnR and it can be avoided by use separate metal layer (using vias) for crisscrossed path.
+
+Based on ideal condition of the clock (time required by clock to reach a component is 0) we will do setup timing analysis and based on this we will check our placement condition is meeting the given specification or not.
+
+Placement before buffer insertion: 
+
+![image](https://user-images.githubusercontent.com/69652104/214977372-22400c76-ebfe-4d5f-b4c9-0715352351b0.png)
+
+Placement with buffers
+
+![image](https://user-images.githubusercontent.com/69652104/214977547-4198edb6-b2e9-49d1-888d-4c75422d5aa9.png)
+
+<!-- Slew is dependented upon the value of cap. The higher the value more is the charge required to charge the cap and the slew will be bad Abutment has lot of advantage-->
 
 ### LAB Day 2
 
