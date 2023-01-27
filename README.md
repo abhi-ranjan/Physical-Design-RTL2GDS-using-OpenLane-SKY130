@@ -719,11 +719,12 @@ def (design exchange format)
 
 To implement the complete CMOS inverter click [here](https://github.com/nickson-jose/vsdstdcelldesign).
 
-Magic is interactive FRC tool. If we have DRC it will show automatically. For our design we do not ahve any DRC violation. We need to ensure that our final design in DRC clean. 
+
+Magic is interactive DRC tool. If we have DRC it will show automatically. For our design we do not have any DRC violation. We need to ensure that our final design in DRC clean. 
 
 To know the logical function of the inverter we first extract the SPICE. Post that we will do simulation the file using ngspice.
 
-To extract it on SPICE: 
+To extract it on SPICE, type these command in the tkcon window: 
 * create an .ext file - `extract all` (extracted in vsdstdcelldesign folder)
 * We will use this ext file to buide our SPICE file which can be used with the ngspice tool. Doing this will extract all the parasitics  too.
 
