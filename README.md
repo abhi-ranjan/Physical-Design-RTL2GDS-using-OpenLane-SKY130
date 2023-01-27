@@ -615,14 +615,14 @@ The SPICE Deck is written below:
 ```
 *** MODEL Description ***
 *** NETLIST Description ***
-M1 out in vdd vdd pmos W=o.375 L=0.25 *** `[component name]` `[connectivity]` [drain] [gate] [source] [substrate] `[type]` `[dimensions W/L]` ***
+M1 out in vdd vdd pmos W=o.375 L=0.25 *** [component name] [connectivity] [drain] [gate] [source] [substrate] [type] [dimensions W/L] ***
 *** Similarly for NMOS ***
 M2 out in vdd vdd nmos W=o.375 L=0.25
-*** load cap connecivity and value `[name]` `[node1]` `[node2]` `[value]` ***
+*** load cap connecivity and value [name] [node1] [node2] [value] ***
 cload out 0 10f
-*** Supply voltage `[name]` `[node1]` `[node2]` `[value]` ***
+*** Supply voltage [name] [node1] [node2] [value] ***
 Vdd vdd 0 2.5
-*** Input voltage `[name]` `[node1]` `[node2]` `[value]` ***
+*** Input voltage [name] [node1] [node2] [value] ***
 Vin in 0 2.5
 *** Simulation Command ***
 .op
@@ -647,7 +647,8 @@ plot out vs in
 
 * Vm (switching threshold voltage) - The point where exact transition takes place i.e., Vin = Vout. At this point both the MOS are in saturation and we have a high leakage current (direct current flowing from vdd to ground). If the pull up network is strong the VTC moves towards right (Vm' > Vm) and if pull down network is strong then VTC shifts leftwards (Vm' < Vm).
 
-*Formula for Vm*
+** Formula for Vm **
+
 ![image](https://user-images.githubusercontent.com/69652104/215190239-b570e8c4-41c6-4bae-a399-2f27f1114903.png)
 
 * Propagation delay - The difference between the time when output as well as input is at 50%. ( o/p falls and i/p rises gives fall delay, o/p rises and i/p falls gives us the rise delay)
