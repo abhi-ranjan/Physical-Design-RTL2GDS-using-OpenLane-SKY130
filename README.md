@@ -33,6 +33,7 @@ The following repository consists of knowledge gained and steps followed while d
        - [Pin Placement and logical cell placement blockage](#pin-placement-and-logical-cell-placement-blockage)
        - [Placement and routing](#placement-and-routing)
        - [LAB Day 2](#lab-day-2)
+       - [TASK 2: Calculating area](#task-2:-calculating-area)
       
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
@@ -517,6 +518,7 @@ cd runs/[date]/results/floorplan/picorv32a.floorplan.def
 
 **NOTE: 1 micron is equivalent to 1000 database units**
 
+### TASK 2: Calculating area
 **Calculating the die area = (660685 / 1000) x (671405/1000) = 443587.2124 um <sup>2</sup>**
 
 **Step 3:** Review floorplan layout in Magic
