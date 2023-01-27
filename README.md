@@ -34,7 +34,9 @@ The following repository consists of knowledge gained and steps followed while d
        - [Placement and routing](#placement-and-routing)
        - [LAB Day 2](#lab-day-2)
        - [TASK 2: Calculating area](#task-2-calculating-area)
-      
+* [Day 3 - Design library cell using Magic Layout and ngspice characterization](#day-3---design-library-cell-using-magic-layout-and-ngspice-characterization)
+   - [LAB Day 3](#lab-day-3)
+   - [Labs for CMOS inverter ngspice simulations](#labs-for-cmos-inverter-ngspice-simulations)
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
 The complete flow consists of following steps:
@@ -576,9 +578,12 @@ The genrated layout:
 Placement ensures that the standard cells are correctly placed. 
 PDN is created during floorplan. But is Openlane there is a post floorplan, post placement and CTS is done for PDN.
 
-# Day 2 - Design library cell using Magic Layout and ngspice characterization
+# Day 3 - Design library cell using Magic Layout and ngspice characterization
 
-## LAB Day 2
+## LAB Day 3
 
 ## Labs for CMOS inverter ngspice simulations
-* IO Placer
+Here we will be dive deep into the flow. We will take a .mag file and do post-layout simulation in ngspice. After post-characterising we will be plugging this cell into the openlane flow i.e., into picorv32a core. 
+
+* IO Placer revision
+Earlier we had equidistant placed input/output pins. 
