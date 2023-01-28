@@ -787,8 +787,9 @@ run
 .end
 ```
 
-error
-file:///tmp/gnome-shell-screenshot-d9e8zi.png
+**error**
+![image](https://user-images.githubusercontent.com/69652104/215266807-fc95ee0d-1334-47a4-9693-8862527b4e59.png)
+
 
 It gave us error that subckt hence I referred to the following link for exact SPICE file [here](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage).
 
