@@ -37,6 +37,15 @@ The following repository consists of knowledge gained and steps followed while d
 * [Day 3 - Design library cell using Magic Layout and ngspice characterization](#day-3---design-library-cell-using-magic-layout-and-ngspice-characterization)
    - [LAB Day 3](#lab-day-3)
    - [Labs for CMOS inverter ngspice simulations](#labs-for-cmos-inverter-ngspice-simulations)
+       - [Creating SPICE deck](#creating-spice-deck)
+       - [Analysing the inverter](#analysing-the-inverter)
+       - [LAB SETUP](#lab-setup)
+   - [Inception of Layout Â CMOS fabrication process (16 mask process)](#inception-of-layout-Â-CMOS-fabrication-process-(16-mask-process))
+   - [LAB DAY 3 (PART 2)](#labb-day-3(part-2))
+   - [LAB DAY 3 (PART 3)](#labb-day-3(part-3))
+       - [TASK 3: calculating delays and fall time](#task-3-calculating-delays-and-fall-time)
+* [DAY 4 Pre-layout timing analysis and importance of good clock tree](#day-4-pre---layout-timing-analysis-and-importance-of-good-clock-tree)
+   - [Pre-layout timing analysis and importance of good clock tree](#pre-layout-timing-analysis-and-importance-of-good-clock-tree)
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
 The complete flow consists of following steps:
@@ -698,7 +707,7 @@ The generated layout:
 
 ![image](https://user-images.githubusercontent.com/69652104/215205628-74e0252a-8d08-4697-b3fc-cb93d1dfc547.png)
 
-## Inception of Layout Â CMOS fabrication process (16 mask process) 
+## Inception of Layout Â CMOS fabrication process (16 mask process) 
 
 1. Selecting a substrate 
 2. Creating active region for transistor 
@@ -902,3 +911,4 @@ Upon extraction we find that there are .mag files and sky130A.tech file.
 
 Now we can use magic to analyse the DRC rule and fix it if it's violated.
 
+# DAY 4 Pre-layout timing analysis and importance of good clock tree
