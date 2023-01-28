@@ -912,3 +912,5 @@ Upon extraction we find that there are .mag files and sky130A.tech file.
 Now we can use magic to analyse the DRC rule and fix it if it's violated.
 
 # DAY 4 Pre-layout timing analysis and importance of good clock tree
+
+Pre-layout timing analysis and importance of good clock tree
