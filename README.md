@@ -834,8 +834,50 @@ The transient plot is shown below:
 ![image](https://user-images.githubusercontent.com/69652104/215252884-27d233a9-7183-4a44-b84d-3db002703829.png)
 
 Characterisation involves four parameters: 
-1. rise transiton  - time taken by output waveform to transit from 20% to 80% of VDD
+1. rise transiton  - time taken by output waveform to transit from 20% to 80% of VDD 
+20% value (0.66) = 2.1829 ns
 
-2. fall transition - time taken by output waveform to transit from 80% to 20% of VDD.
+![image](https://user-images.githubusercontent.com/69652104/215253347-7c5ea08b-ecd0-4ed6-a023-f7fe99f07a75.png)
 
-3 & 4. Propagation delay - The difference between the time when output as well as input is at 50%. ( o/p falls and i/p rises gives fall delay, o/p rises and i/p falls gives us the rise delay)
+80% value (2.64) = 2.24407 ns
+
+![image](https://user-images.githubusercontent.com/69652104/215253463-4639c6c9-efbe-4372-be69-cc688e4e052b.png)
+
+Hence rise time = 2.24407 - 2.1829 = 0.06117 ns
+
+### TASK 3: calculating fall time
+2. fall transition - time taken by output waveform to transit from 80% (2.64) to 20% (0.66) of VDD.
+
+![image](https://user-images.githubusercontent.com/69652104/215253711-a3c26cd9-45f4-4e48-bf73-a1f01ebd31c6.png)
+
+fall time = 0.02725 ns
+
+3 & 4. Propagation delay - The difference between the time when output as well as input is at 50% (1.65). ( o/p falls and i/p rises gives fall delay, o/p rises and i/p falls gives us the rise delay)
+
+* fall delay:
+
+output falling (50%)
+
+![image](https://user-images.githubusercontent.com/69652104/215254037-aa53576a-3113-4817-a46b-6b70b0f851e4.png)
+
+input rising (50%) 
+
+![image](https://user-images.githubusercontent.com/69652104/215254068-e9cdfaee-31de-4978-88c8-8d48971b7ab3.png)
+
+Therefore delay = 8.07761 - 8.05075 = 0.02686  ns
+
+* rise delay:
+
+output rising (50%)
+
+![image](https://user-images.githubusercontent.com/69652104/215254229-004dfa0a-f99f-435e-8727-b96016d9c159.png)
+
+input falling (50%) 
+
+![image](https://user-images.githubusercontent.com/69652104/215254264-0826646a-d647-4806-9493-395205d94c98.png)
+
+Therefore delay = 6.15075 - 6.15 = 0.00075 ns
+
+The above characterisation is done at 27 C.
+
+Next objective is to use this layout of inverter to create a lef file. Using this lef in openlane and plugging this cell we will make a custom cell. We will plug this in picorv32a.
