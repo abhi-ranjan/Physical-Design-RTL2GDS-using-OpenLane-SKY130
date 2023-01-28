@@ -926,13 +926,73 @@ OpenLANE is a Place and Route flow and for placement of any cell we do not requi
 1. The input and the output port must lie on the intersection of verticle and horizontal tracks.
 2. Width of standard cell must be in odd multiple of track pitch and height should be off odd multiple of track verticle pitch.
 
-**Step**
-go to the directory - pdks/sky130A/libs.tech/openlane/sky130_fe_sc_hd/
+**Step 1 requirement**
+go to the directory - pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/
 then do less tracks.info
 
 tracks are used during routing. route can usually go above the track which are the layers. So, route are basically metal traces. PnR is automated process so we need to specify where do we want our route can go and this information is given by the tracks. Hence tracks are guide to route. Horizontal and verticle track pitches are mentioned. 
 
 <!--- We can verify our 1st guideline. The ports (in and o/p) are in li1 metal layer. So we need to ensure these ports are on intersection or on li1 horizontal and verticle layer.-->
 
-We now werify the guideline using magice. Pressing g make the grid visible. We will converge the grid with track value so that we can verify that our ports are actually on the intesection or not.
-4. 
+We now werify the guideline using magice. Pressing `g` make the grid visible. We will converge the grid with track value so that we can verify that our ports are actually on the intesection of horizontal and verticle li1 or not. So we try to take track file as reference and verify our file by getting grid information from tkcon window.
+
+From track file we can get x pitch, y pitch, verticle offset and horizontal offset. Let's make a grid according to the track information.
+
+command inside vsdstdcelldesign
+
+```
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+then open the track information in the pdk -> sky130A -> libs.tech ->openlane -> sky130_fd_sc_hd/
+
+```
+less tracks.info
+```
+
+![image](https://user-images.githubusercontent.com/69652104/215277035-4ca01f3b-a951-4c6a-9b3a-eeeeff675e42.png)
+
+Horizontal track pitch = 0.46, verticle track pitch = 0.34, horizontal offset = 0.23, verticle offset = 0.17
+
+![image](https://user-images.githubusercontent.com/69652104/215277376-5dfccc9c-e755-4807-9ad2-30514a6af2d8.png)
+
+We can observe horizontal and verticle crossing also we can observe the grid spacing is changed.
+
+![image](https://user-images.githubusercontent.com/69652104/215277507-cc2ed8ab-d6e4-40ff-b903-2eb0afd9748f.png)
+
+**Step 2nd requirement**
+
+The width of the std cell in x direction (x pitch) should be odd multiple of the x pitch and height of the std cell y direction should be odd multiple of the y pitch. We find that the grids are as per our conditions.
+
+**Step 3 LEF file extraction ***
+
+Ports doesn't mean anything to magic. Port definations are required while we want to extract the lef files. After extraction ports are converted in pins. The LEF file contains the cell size, port definitions, and properties which aid the placer and router tool. With that, the ports definition, port class, and port use must be set first. The instructions to set these definitions via Magic are on the [vsdstdcelldesign repo](https://github.com/nickson-jose/vsdstdcelldesign#create-port-definition).
+
+
+Once we have defined the ports. Our next step is to define the purpose of the ports. For that we do port class and port use. Refer to [vsdstdcelldesign repo](https://github.com/nickson-jose/vsdstdcelldesign#create-port-definition).
+
+After setting the parameters we are ready to extract lef file from our mag. We give the cell a custom name - `save sky130_vsdinv.mag` (command in the tkcon tab).
+
+![image](https://user-images.githubusercontent.com/69652104/215279291-6eefc6a0-a07a-4768-90e0-806e24213e0e.png)
+
+Then open our new inverter mag. 
+
+```
+magic -T sky130A.tech sky130_vsdinv.mag
+```
+
+Command to create the lef file (run in tkcon window)
+
+```
+lef write [name optional]
+```
+
+The lef file consists all the information.
+
+![image](https://user-images.githubusercontent.com/69652104/215279645-99a821cf-3f53-4c96-9fbc-b1be750fa553.png)
+
+Setting a layer as port create a PIN in the macro. Now our lef file is ready. 
+Next we will try to plug this to our design of picorv32a.
+
+![image](https://user-images.githubusercontent.com/69652104/215279900-6c5eaed7-b133-4935-97c2-3fac3c93563d.png)
+
