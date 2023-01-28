@@ -755,4 +755,73 @@ The above SPICE model give connectivity information of our inverter. Now for tra
 * So we create a node 0 and give VDD = 3V. 
 * Then we give pulse voltage between A and VGND (VSS). 
 
-We need to ensure that scaling is proper. (set to grid value specified in the layout). We can check the dimension of a grid in layout by the command `box`. 
+We need to ensure that scaling is proper. (set to grid value specified in the layout). We can check the dimension of a grid in layout by the command `box`.
+
+Add these command to our SPICE DECK
+
+```
+.option scale = 0.1u //set scale to 0.01 u.
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+// comment out the .subckt line
+// change name of model from pmos (sky130_fd_pr__pfet_01v8) to pshort_model and from nmos(sky130_fd_pr__nfet_01v8) to nshort_model
+VDD VPWR 0 3.3V //supply
+VSS VGND 0 0V //ground
+Va A VGND PULSE (0V 3.3V 0ns 0.1ns 0.1ns 2ns 4ns)
+// comment .end
+//transient 
+.tran 1n 20n
+.control
+run
+.endc
+.end
+```
+
+error
+file:///tmp/gnome-shell-screenshot-d9e8zi.png
+
+It gave us error that subckt hence I referred to the following link for exact SPICE file 
+
+```
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
+
+.option scale=0.01u
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+
+* .subckt sky130_inv A Y VPWR VGND
+M0 Y A VGND VGND nshort_model.0 ad=1435 pd=152 as=1365 ps=148 w=35 l=23
+M1 Y A VPWR VPWR pshort_model.0 ad=1443 pd=152 as=1517 ps=156 w=37 l=23
+C0 A VPWR 0.08fF
+C1 Y VPWR 0.08fF
+C2 A Y 0.02fF
+C3 Y VGND 2fF
+C4 VPWR VGND 0.74fF
+* .ends
+
+* Power supply 
+VDD VPWR 0 3.3V 
+VSS VGND 0 0V 
+
+* Input Signal
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+
+* Simulation Control
+.tran 1n 20n
+.control
+run
+.endc
+.end
+```
+
+After editing we launch the ngspice to see the values:
+
+command
+
+```
+ngspic [spice file] // our case sky130_inv.spice
+```
+![image](https://user-images.githubusercontent.com/69652104/215251586-946a97dc-6b1e-4e22-9943-344433153f1b.png)
+
+We can now see the plots:
+
