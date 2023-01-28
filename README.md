@@ -911,7 +911,28 @@ Upon extraction we find that there are .mag files and sky130A.tech file.
 ![image](https://user-images.githubusercontent.com/69652104/215258627-c188c40b-d069-4bd2-942c-ffa0b306b45e.png)
 
 Now we can use magic to analyse the DRC rule and fix it if it's violated.
-
+<!--- magic is invoked here by using the following command magic -d XR --->
 # DAY 4 Pre-layout timing analysis and importance of good clock tree
 
-Pre-layout timing analysis and importance of good clock tree
+## Pre-layout timing analysis and importance of good clock tree
+
+<!---Till now we have done design setup, floorplan, placement and lastly we had mage a SPICE model and its characterisation given a .mag file--->
+
+OpenLANE is a Place and Route flow and for placement of any cell we do not require the entire mag file information. .mag file has all the information the power, ground, logic, metal, etc. For PnR do not require all the information. Only info we need is the PR boundary, power rail, ground rail, input and output. Here lef files come into picture. lef files has only these information. It protects our IP.
+
+* Now our objective is to extract the lef file from .mag file and then try to plug the lef file to picorv32a. (that is instead of std cell we will use our own design)
+
+* Guidlines for std cell set making from PnR point of view.
+1. The input and the output port must lie on the intersection of verticle and horizontal tracks.
+2. Width of standard cell must be in odd multiple of track pitch and height should be off odd multiple of track verticle pitch.
+
+**Step**
+go to the directory - pdks/sky130A/libs.tech/openlane/sky130_fe_sc_hd/
+then do less tracks.info
+
+tracks are used during routing. route can usually go above the track which are the layers. So, route are basically metal traces. PnR is automated process so we need to specify where do we want our route can go and this information is given by the tracks. Hence tracks are guide to route. Horizontal and verticle track pitches are mentioned. 
+
+<!--- We can verify our 1st guideline. The ports (in and o/p) are in li1 metal layer. So we need to ensure these ports are on intersection or on li1 horizontal and verticle layer.-->
+
+We now werify the guideline using magice. Pressing g make the grid visible. We will converge the grid with track value so that we can verify that our ports are actually on the intesection or not.
+4. 
