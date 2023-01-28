@@ -996,3 +996,112 @@ Next we will try to plug this to our design of picorv32a.
 
 ![image](https://user-images.githubusercontent.com/69652104/215279900-6c5eaed7-b133-4935-97c2-3fac3c93563d.png)
 
+**Step 4 Introduction to timing libs and steps to include new cell in synthesis**
+
+* First copy the newly created lef to src under picorv32a:
+
+```
+cp sky130_vsdinv.lef /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+```
+
+We need to have a library which has our cell defination for synthesis so that abc can map it. (inside vsdstdcelldesign -> libs). We have different library file for different PVT and of different speed. 
+
+* We will require fast slow and typical for STA analysis. 
+
+* Now our objective is that the tool should map the vsd cell during the synthesis flow. We will copy the library (from vsdstdcelldesign -> libs) files to src folder under picorv32a.
+
+
+```
+cp sky130_fd_sc_hd__*  /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+```
+
+* Then we need to model our config.tcl under the picorv32a. The edited config.tcl is shown below:
+
+```
+# Design
+set ::env(DESIGN_NAME) "picorv32a"
+
+set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
+set ::env(SDC_FILE) "./designs/picorv32a/src/picorv32a.sdc"
+
+set ::env(CLOCK_PERIOD) "5.000"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_MIN) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_MAX) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+set ::env(FP_CORE_UTIL) 65
+set ::env(FP_IO_VMETAL) 4
+set ::env(FP_IO_HMETAL) 3
+
+
+set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1} {
+source $filename
+}
+```
+
+* After editing the config file run the full flow from start i.e., in terminal opened on desktop. The set of commands are given below: 
+
+```
+1. cd work/tools/openlane_working_dir/openlane
+2. docker
+3.  ./flow.tcl -interactive
+4. package require openlane 0.9
+5. prep -design picorv32a -tag [file_name (26-01_21-38)] -overwrite
+```
+
+error
+![image](https://user-images.githubusercontent.com/69652104/215286127-e30f7e02-8c58-48f1-9d02-ac7cb7f6b730.png)
+
+To resolve - Just change LIB_MIN to LIB_FASTEST and LIB_MAX to LIB_SLOWEST.
+
+Hence the correct config.tcl file.
+
+```
+# Design
+set ::env(DESIGN_NAME) "picorv32a"
+
+set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
+set ::env(SDC_FILE) "./designs/picorv32a/src/picorv32a.sdc"
+
+set ::env(CLOCK_PERIOD) "5.000"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+set ::env(FP_CORE_UTIL) 65
+set ::env(FP_IO_VMETAL) 4
+set ::env(FP_IO_HMETAL) 3
+
+
+set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1} {
+source $filename
+}
+```
+
+* Then again run the set of abve commands by opening a terminal on desktop.
+
+![image](https://user-images.githubusercontent.com/69652104/215286773-fe6a87cb-d4a6-453f-b121-5bbeff180a37.png)
+
+Now run the below command to add additional lefs.
+
+```
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+```
+
+![image](https://user-images.githubusercontent.com/69652104/215286954-7a530825-2b38-4b49-b57d-53ac3004f8c8.png)
+
