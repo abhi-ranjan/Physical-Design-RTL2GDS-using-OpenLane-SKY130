@@ -914,6 +914,7 @@ Now we can use magic to analyse the DRC rule and fix it if it's violated.
 <!--- magic is invoked here by using the following command magic -d XR --->
 # DAY 4 Pre-layout timing analysis and importance of good clock tree
 
+## LAB DAY 4 (PART 1)
 ## Pre-layout timing analysis and importance of good clock tree
 
 <!---Till now we have done design setup, floorplan, placement and lastly we had mage a SPICE model and its characterisation given a .mag file--->
@@ -1105,3 +1106,65 @@ add_lefs -src $lefs
 
 ![image](https://user-images.githubusercontent.com/69652104/215286954-7a530825-2b38-4b49-b57d-53ac3004f8c8.png)
 
+* Then run synthesis
+
+```
+run_synthesis
+```
+After this we can find that our inverter is being used here, see the image attached below:
+
+![image](https://user-images.githubusercontent.com/69652104/215287483-94a26a9d-deb6-44b5-a608-8812d9b3338e.png)
+
+![image](https://user-images.githubusercontent.com/69652104/215287506-7070254b-1915-4ff5-bc34-f2d2f65f2a86.png)
+
+## Delay Table:
+
+Problem:
+
+1. The capacitance or the load at the output node of each and every buffer in the complete clock tree is varying. 
+
+2. Also if the load is varying the input transition is varying.
+
+To avoid large skew between endpoints of a clock tree (happening due to signal arrives at different point in time):
+
+* After splitting the buffers. 
+
+* Buffers on the same level must have same capacitive load to ensure same timing delay or latency on the same level. It means that each buffer at the same level is having same load.
+
+* Buffers on the same level must also be the same size (different buffer sizes -> different W/L ratio -> different resistance -> different RC constant -> different delay). It means that the buffer at same level should be of same size. 
+
+![image](https://user-images.githubusercontent.com/69652104/215288155-f31a933b-9163-4bb5-88e4-afa280f3091b.png)
+
+
+Solution:
+
+Delay tables are the solution. Delay tables are 2D table. Delay of a component is characterised and summaries in a table.
+
+The timing model of each cell is recorded and is summarised in delay tables, which are part of the liberty file. The output slew is the main cause of delay. Capacitive load and input slew are also factors that affect output slew. The input slew has its own transition delay table and is a function of the previous buffer's output cap load and input slew.
+
+![image](https://user-images.githubusercontent.com/69652104/215288726-b9e8b829-3ec2-4d72-bf4f-2f83f3ed4f29.png)
+
+## LAB DAY 4 (PART 2)
+
+**Step 1 Lab steps to configure synthesis settings to fix slack and include vsdinv**
+
+Let's try to fix the slack. Currently the value of slack is 
+
+```
+tns (total negative slack) = -711.59
+wns (worst negative slack) = -23.89
+```
+
+Slack has to be positive always and negative slack indicates a violation in timing.
+We will try to maintain a balance between the delay and the area. (SYNTH_STRATEGY)
+
+We can use the following command to know any variable (switches)
+
+```
+echo $::env ([Varible]) // our case = SYNTH_STRATEGY
+// change the STRATEGY
+
+ | SYNTH_STATERGY | Area | wns | tns |
+ | ------ | ------ | ------ | ------ |
+ | 0 | 147712.9184 | -23.89 | -711.59 |
+ 
