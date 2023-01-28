@@ -780,7 +780,7 @@ run
 error
 file:///tmp/gnome-shell-screenshot-d9e8zi.png
 
-It gave us error that subckt hence I referred to the following link for exact SPICE file 
+It gave us error that subckt hence I referred to the following link for exact SPICE file [here](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage).
 
 ```
 * SPICE3 file created from sky130_inv.ext - technology: sky130A
@@ -823,5 +823,19 @@ ngspic [spice file] // our case sky130_inv.spice
 ```
 ![image](https://user-images.githubusercontent.com/69652104/215251586-946a97dc-6b1e-4e22-9943-344433153f1b.png)
 
-We can now see the plots:
+We can now see the plots (inside ngspice type the command below:
 
+```
+plot y vs time a
+```
+
+The transient plot is shown below:
+
+![image](https://user-images.githubusercontent.com/69652104/215252884-27d233a9-7183-4a44-b84d-3db002703829.png)
+
+Characterisation involves four parameters: 
+1. rise transiton  - time taken by output waveform to transit from 20% to 80% of VDD
+
+2. fall transition - time taken by output waveform to transit from 80% to 20% of VDD.
+
+3 & 4. Propagation delay - The difference between the time when output as well as input is at 50%. ( o/p falls and i/p rises gives fall delay, o/p rises and i/p falls gives us the rise delay)
