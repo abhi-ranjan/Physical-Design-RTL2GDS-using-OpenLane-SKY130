@@ -711,6 +711,7 @@ The generated layout:
 
 ## LAB DAY 3 (PART 2)
 
+** Step 1 : Characterisation **
 We try to analyse the layout part by part using the `what` command in tkcon window. 
 
 ![image](https://user-images.githubusercontent.com/69652104/215220543-9ba085f3-cb83-439f-aed3-19d0cdb946cd.png)
@@ -845,7 +846,7 @@ Characterisation involves four parameters:
 
 Hence rise time = 2.24407 - 2.1829 = 0.06117 ns
 
-### TASK 3: calculating fall time
+### TASK 3: calculating delays and fall time
 2. fall transition - time taken by output waveform to transit from 80% (2.64) to 20% (0.66) of VDD.
 
 ![image](https://user-images.githubusercontent.com/69652104/215253711-a3c26cd9-45f4-4e48-bf73-a1f01ebd31c6.png)
@@ -881,3 +882,21 @@ Therefore delay = 6.15075 - 6.15 = 0.00075 ns
 The above characterisation is done at 27 C.
 
 Next objective is to use this layout of inverter to create a lef file. Using this lef in openlane and plugging this cell we will make a custom cell. We will plug this in picorv32a.
+
+** Step 2: DRC rules analysis **
+
+To know more about Magic and the command for DRC visit the following [link](http://opencircuitdesign.com/). Technology files have all the technology related file. It consists all information about the layer, pattern, electrical connectivity, GDS generation rule, DRC rule, all other kind of rules, etc. Tnformation about the technology files can be found [here](http://opencircuitdesign.com/magic/index.html). 
+
+** NOTE: **
+cif - caltech intermediate formate - It is used interchangably with gds in magic tech file and documentation. Read [through the website](http://opencircuitdesign.com/magic/index.html) for [DRC rules](https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#rules-periphery--page-root). The basic DRC rules are called edge based rules. 
+
+1. We will download the required DRC_test files using the command.
+
+```
+wget http://opencircuitdesign.com/open_pdks/archive/drc_test.tgz
+```
+
+Upon extraction we find that there are .mag files and sky130A.tech file.
+
+![image](https://user-images.githubusercontent.com/69652104/215258627-c188c40b-d069-4bd2-942c-ffa0b306b45e.png)
+
