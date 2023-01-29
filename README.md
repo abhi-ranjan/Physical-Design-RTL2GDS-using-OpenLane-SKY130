@@ -1258,21 +1258,21 @@ report_wns
 
 After cts new .v files start getting created. 
 
-Creating my_base.sdc
+Creating my_base.sdc and save this file in the src folder of picorv32a folder.
 
 ```
 set ::env(CLOCK_PORT) clk
 set ::env(CLOCK_PERIOD) 5.000
 # set ::env(SYNTH_DRIVING_CELL) sky130_vsdinv
-set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv8
+set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv_8
 set ::env(SYNTH_DRIVING_CELL_PIN) Y
 set ::env(SYNTH_CAP_LOAD) 17.65
-create clock [get_ports $::env(CLOCK_PORT)]   -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
-set IO_PCT 0.2
+create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+set IO_PCT  0.2
 set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
 set output_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
-puts "\[INFO]: Setting output delay to: $output_delay_value"
-puts "\[INFO]: Setting output delay to: $input_delay_value"
+puts "\[INFO\]: Setting output delay to: $output_delay_value"
+puts "\[INFO\]: Setting output delay to: $input_delay_value"
 
 set clk_indx [lsearch [all_inputs [get_port $::env(CLOCK_PORT)]]
 #set rst_indx [lsearch [all_inputs [get_port resetn]]
@@ -1289,5 +1289,14 @@ set_output_delay $output_delay_value -clock [get_clocks $::env(CLOCK_PORT)] [all
 set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
 set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
 puts "\[INFO\]: Setting load to: $cap_load"
-set load $cap load [all_outputs]
+set_load  $cap_load [all_outputs]
+```
+
+This is replicating the same results as we had after run synthesis stage.
+`pre_sta.conf` will be the fill on which we will be doing our STA analysis.
+
+To perform pre STA run the command below by opening the terminal in openlane folder which is inside the openlane_working_dir.
+
+```
+sta [file_name] // (our case = pre_sta.conf)
 ```
