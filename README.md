@@ -1194,7 +1194,14 @@ run_cts
 Then check the file which is created. Go to the placements folder under reults and then invoke the magic tool and load the def file. The command is:
 
 ```
-magic -T /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merger.lef def read picorv32a.placement.def
+magic -T /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def
 ```
 
+We can see our sky130_vsdinv file in the merged.lef file inside the tmp folder. The macro is present.
+
+![image](https://user-images.githubusercontent.com/69652104/215317293-256e592c-225f-4465-b396-9551a415a194.png)
+
+We can also see the sky130_vsdinv inside the layout also:
+
+![image](https://user-images.githubusercontent.com/69652104/215317392-1749aaab-7568-4d8b-b883-d57ba4a9f942.png)
 
