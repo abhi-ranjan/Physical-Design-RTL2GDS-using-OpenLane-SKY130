@@ -1205,3 +1205,51 @@ We can also see the sky130_vsdinv inside the layout also:
 
 ![image](https://user-images.githubusercontent.com/69652104/215317392-1749aaab-7568-4d8b-b883-d57ba4a9f942.png)
 
+## Timing Analysis
+
+First we take the ideal clock (clock tree is not yet build) and do the timing analysis with it. After that we will do with real clock.
+
+###  Pre-layout timing analysis (using ideal clock) 
+
+* SETUP TIMING ANALYSIS.
+Specifications Clock frequency = 1GHz and period of 1ns.
+
+We have a launch flop and capture flop and in between we the the combinational logic. We have ideal clock network i.e., clock tree is not yet built. Hence we do not have any buffer in the clock path. This is a typical scenario for hold time and setup time calculation. We send the 1st riseing clock to the launch flop (t=0ns) and the 2nd rising to the capture flop (t=1ns).  
+
+![image](https://user-images.githubusercontent.com/69652104/215318169-d3f4c27c-def8-46c1-ad9b-ba62095e9ca4.png)
+
+The equation for setup time is: 
+
+```
+Θ < T - S - SU
+```
+
+First basic insight is the setup delay should be less than the combinational delay. Then analysing the capture flop we see some delay due to the mux. due to jitter there is delay in the exact point of clock arrival and this variation is due to internal clock circuitary (PLL). 
+
+where. 
+- Θ = Combinational delay which includes clk to Q delay of launch flop and internal propagation delay of all gates between launch and capture flop
+- T = Time period, also called the required time
+- S = Setup time. As demonstrated below, signal must settle on the middle (input of Mux 2) before clock tansists to 1 so the delay due to Mux 1 must be considered, this delay is the setup time.
+- SU = Setup uncertainty due to jitter which is temporary variation of clock period. This is due to non-idealities of PLL/clock source.
+
+**NOTE: Things are different for hold time.**
+
+We have, T = 1000 ps, S = 10 ps, U = 90 ps
+Hence we arrive at Θ < 0.9 ns (for our case)
+
+## LAB DAY 4 (PART 3)
+##  OpenSTA for post-synth timing analysis
+
+Making the pre_sta.conf
+
+```
+set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
+read_liberty -max /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+read_liberty -min /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+read_verilog /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/28-01_21-52/results/synthesis/picorv32a.synthesis.v
+link_design picorv32a
+read_sdc /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/picorv32a.sdc
+report_checks - pathdelay min_max - fields {slew trans net cap input_pin}
+report_tns
+report_wns
+```
