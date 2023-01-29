@@ -1371,5 +1371,33 @@ There are three parameters that we need to consider when building a clock tree:
 
 ## LAB DAY 4 (PART 3)
 
-After bringing the slack down to less than -1. For more detail about it refer to this [repo](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage). **Sadly which didn't happen for me** 
+After bringing the slack down to less than -1. For more detail about it refer to this [repo](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage). **Sadly which didn't happen for me.** 
+
+* We can write the modifications in our cell during reduction of time into a new netlist which can be then used for the CTS. The command for this is:
+
+```
+write_verilog [location/picorv32a.synthesis.v] // my case = /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis.v
+```
+
+Verifation about modification can be done by the help of cheffing the change of cell that one performs.
+
+Now run floorplan again then placement. Use the following command in order one by one. 
+
+```
+init_floorplan
+place_io
+global_placement_or
+detailed_placement
+tap_decap_or
+detailed_placement
+gen_pdn
+```
+
+Net stage is running CTS. It takes the default settings. 
+| Variable      | Description                                                   |
+|---------------|---------------------------------------------------------------|
+| `CTS_TARGET_SKEW` | The target clock skew in picoseconds. <br> (Default: `200` ps)|
+| `CTS_ROOT_BUFFER`| The name of cell inserted at the root of the clock tree. |
+| `CLOCK_TREE_SYNTH` | Enable clock tree synthesis for tirtonCTS. <br> (Default: `1`)|
+| `CTS_TOLERANCE` | An integer value that represents a tradeoff of QoR and runtime. Higher values will produce smaller runtime but worse QoR <br> (Default: `100`) |
 
