@@ -1185,4 +1185,16 @@ gen_pdn
 run_cts
 ```
 
-Then check the file which is created. Go to the placements folder under reults and then invoke the magic tool 
+![image](https://user-images.githubusercontent.com/69652104/215315200-d39e24d2-f4fe-4c4d-aa8d-77dd78b3e33a.png)
+
+![image](https://user-images.githubusercontent.com/69652104/215315421-c383ede2-99d5-4bda-a659-7f79a625df3c.png)
+
+![image](https://user-images.githubusercontent.com/69652104/215315691-074d0fb9-917b-4d94-9afc-8d678420695a.png)
+
+Then check the file which is created. Go to the placements folder under reults and then invoke the magic tool and load the def file. The command is:
+
+```
+magic -T /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merger.lef def read picorv32a.placement.def
+```
+
+
