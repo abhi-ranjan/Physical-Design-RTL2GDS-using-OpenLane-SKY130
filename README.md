@@ -1240,6 +1240,8 @@ Hence we arrive at Θ < 0.9 ns (for our case)
 ## LAB DAY 4 (PART 3)
 ##  OpenSTA for post-synth timing analysis
 
+In cts we try to change the netlist by making clock tree.
+
 Making the pre_sta.conf and save it in the openlane folder.
 
 ```
@@ -1262,9 +1264,9 @@ Creating my_base.sdc
 set ::env(CLOCK_PORT) clk
 set ::env(CLOCK_PERIOD) 5.000
 # set ::env(SYNTH_DRIVING_CELL) sky130_vsdinv
-set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__buf16
-set ::env(SYNTH_DRIVING_CELL_PIN) X
-set ::env(SYNTH_CAP_LOAD) 13.6
+set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv8
+set ::env(SYNTH_DRIVING_CELL_PIN) Y
+set ::env(SYNTH_CAP_LOAD) 17.65
 create clock [get_ports $::env(CLOCK_PORT)]   -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
 set IO_PCT 0.2
 set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
