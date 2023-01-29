@@ -1107,7 +1107,7 @@ add_lefs -src $lefs
 ![image](https://user-images.githubusercontent.com/69652104/215286954-7a530825-2b38-4b49-b57d-53ac3004f8c8.png)
 
 * Then run synthesis
-
+<!--- We need to delete the the old synthesis file to change the slack while changing the attributes/variables/switches---> 
 ```
 run_synthesis
 ```
@@ -1242,6 +1242,8 @@ Hence we arrive at Θ < 0.9 ns (for our case)
 
 In cts we try to change the netlist by making clock tree.
 
+The below files can be found in th extras folder in vsdstdcelldesign.
+
 Making the pre_sta.conf and save it in the openlane folder.
 
 ```
@@ -1309,3 +1311,12 @@ The slack for 12 unit time is:
 
 ![image](https://user-images.githubusercontent.com/69652104/215328173-71c70db1-ef11-4b5a-b67f-8653c47c5173.png)
 
+As we haven't done CTS hold time doesn't hold any significance. The delay of any cell is function of input slew and output load. We can play with these data and can get slack as positive. So we can also play with some of some of these parameters.
+
+**NOTE: We need to delete the the old synthesis (.v) file to change the slack while changing the attributes/variables/switches.
+
+![image](https://user-images.githubusercontent.com/69652104/215346118-1d1c706f-38a2-4cb0-bada-749c0eb089d1.png)
+
+
+Earlier
+![image](https://user-images.githubusercontent.com/69652104/215346512-172b1cdb-fce5-4c3c-8885-2734f39c11c5.png)
