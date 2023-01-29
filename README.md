@@ -1300,3 +1300,11 @@ To perform pre STA run the command below by opening the terminal in openlane fol
 ```
 sta [file_name] // (our case = pre_sta.conf)
 ```
+The slack for 5 unit time is 
+
+![image](https://user-images.githubusercontent.com/69652104/215327837-4e41707f-ba15-4a2d-aad9-686a84676e0d.png)
+
+The slack for 12 unit time is:
+
+![image](https://user-images.githubusercontent.com/69652104/215328173-71c70db1-ef11-4b5a-b67f-8653c47c5173.png)
+
