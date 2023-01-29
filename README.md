@@ -1346,4 +1346,29 @@ replace_cell _23732_ sky130_fd_sc_hd__buf_4
 ```
 report_checks -field {net cap slew input_pins} -digits 4
 ```
+we can see that the slack is decreased by some value.
+
+![image](https://user-images.githubusercontent.com/69652104/215349907-2b9ddce1-dd85-4bde-92c2-0fe532c7155a.png)
+
+Upsizing the buffer will change the cell.
+We can replace cell to bring donw the slack. It will slightly increase the area,
+
+```
+1. First find the cell you want to replace. 
+2. Then echo its net details by the following command 
+report_net -connections _[cell number/net number]_ // net number = 23732 name = sky130_fd_sc__hd_buf_1
+3. Then use the replace command to upsize it.
+replace_cell _[net to be replaced]_ [new net name] // net to be replaced = 23732 new net name = sky130_fd_sc_hd__buf_4 
+
+## Clock Tree Synthesis
+
+There are three parameters that we need to consider when building a clock tree:
+
+* Clock Skew = In order to have minimum skew between clock endpoints, clock tree is used. This results in equal wirelength (thus equal latency/delay) for every path of the clock.
+* Clock Slew = Due to wire resistance and capacitance of the clock nets, there will be slew in signal at the clock endpoint where signal is not the same with the original input clock signal anymore. This can be solved by clock buffers. Clock buffer differs in regular cell buffers since clock buffers has equal rise and fall time.
+* Crosstalk = Clock shielding prevents crosstalk to nearby nets by breaking the coupling capacitance between the victim (clock net) and aggresor (nets near the clock net), the shield might be connected to VDD or ground since those will not switch. Shileding can also be done on critical data nets.
+
+## LAB DAY 4 (PART 3)
+
+After bringing the slack down to less than -1. For more detail about it refer to this [repo](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage). **Sadly which didn't happen for me** 
 
