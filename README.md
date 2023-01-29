@@ -1481,7 +1481,7 @@ read_liberty -max $::env(LIB_MAX)
 read_liberty -min $::env(LIB_MIN)
 
 // reading sdc
-read_sdc [location] {my case = /designs/picorv32a/src/my_base.sdc
+read_sdc [location] {my case = /designs/picorv32a/src/my_base.sdc}
 
 // now the clock has been generated 
 set_propagated_clock [all_clocks]
