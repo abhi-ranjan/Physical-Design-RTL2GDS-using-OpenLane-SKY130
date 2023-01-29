@@ -1172,3 +1172,17 @@ set ::env(SYNTH_SIZING) 1
  | 0 | 1 | 0 | sky130_fd_sc_hd__inv_8 | 147712.9184 | -23.89 | -711.59 |
  | 1 | 1 | 1 | sky130_fd_sc_hd__inv_8 |             |        |         | --->
  
+Next run floor plan by executing the following codes one by one:
+
+```
+init_floorplan
+placer_io
+global_placement_or
+detailed_placement
+tap_decap_or
+detailed_placement
+gen_pdn
+run_cts
+```
+
+Then check the file which is created. Go to the placements folder under reults and then invoke the magic tool 
