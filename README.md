@@ -1163,8 +1163,6 @@ We can use the following command to know any variable (switches)
 ```
 echo $::env ([Varible]) // our case = SYNTH_STRATEGY
 // change the STRATEGY, Similarly change for buffering and sizing.
-set ::env(SYNTH_STRATEGY) 1
-set ::env(SYNTH_SIZING) 1
 ```
 
 **NOTE: We need to delete the the old synthesis (.v) file to change the slack while changing the attributes/variables/switches.**
@@ -1172,7 +1170,6 @@ set ::env(SYNTH_SIZING) 1
 ```
 set ::env(SYNTH_STRATEGY) "DELAY 0"
 set ::env(SYNTH_SIZING) 1
-set ::env(SYNTH_MAX_FANOUT) 4
 ```
 
 Earlier
@@ -1326,8 +1323,27 @@ sta [file_name] // (our case = pre_sta.conf)
 
 ![image](https://user-images.githubusercontent.com/69652104/215348256-07abcc72-6028-4650-be35-2c2c233556e0.png)
 
-
 As we haven't done CTS hold time doesn't hold any significance. The delay of any cell is function of input slew and output load. We can play with these data and can get slack as positive. So we can also play with some of some of these parameters.
 
+Command to check what a particular cell is driving:
 
+```
+report_net -connections _[cell number/net number]_
+```
+
+We will change the buffer value to and then try to find out the slack.
+
+![image](https://user-images.githubusercontent.com/69652104/215349518-eff9e832-9b7f-4b67-9872-909de7ead527.png)
+
+To replace the buffer (from buf 1 to buf 4) we use the following command.
+
+```
+replace_cell _23732_ sky130_fd_sc_hd__buf_4
+```
+
+* report check will report the worst path, by default it is the max setup slack
+
+```
+report_checks -field {net cap slew input_pins} -digits 4
+```
 
