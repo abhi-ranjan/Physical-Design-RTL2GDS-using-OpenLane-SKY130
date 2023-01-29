@@ -1164,10 +1164,11 @@ We can use the following command to know any variable (switches)
 echo $::env ([Varible]) // our case = SYNTH_STRATEGY
 // change the STRATEGY, Similarly change for buffering and sizing.
 set ::env(SYNTH_STRATEGY) 1
+set ::env(SYNTH_SIZING) 1
 ```
 
- | SYNTH_STATERGY | SYNTH_BUFFERING | SYNTH_SIZING | SYNT_DRIVING_CELL  Area | wns | tns |
+<!--- | SYNTH_STATERGY | SYNTH_BUFFERING | SYNTH_SIZING | SYNT_DRIVING_CELL  Area | wns | tns |
  | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
  | 0 | 1 | 0 | sky130_fd_sc_hd__inv_8 | 147712.9184 | -23.89 | -711.59 |
- | 1 | 1 | 1 | sky130_fd_sc_hd__inv_8 |             |        |         |
+ | 1 | 1 | 1 | sky130_fd_sc_hd__inv_8 |             |        |         | --->
  
