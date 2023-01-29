@@ -1167,6 +1167,26 @@ set ::env(SYNTH_STRATEGY) 1
 set ::env(SYNTH_SIZING) 1
 ```
 
+**NOTE: We need to delete the the old synthesis (.v) file to change the slack while changing the attributes/variables/switches.**
+
+```
+set ::env(SYNTH_STRATEGY) "DELAY 0"
+set ::env(SYNTH_SIZING) 1
+set ::env(SYNTH_MAX_FANOUT) 4
+```
+
+Earlier
+
+![image](https://user-images.githubusercontent.com/69652104/215346512-172b1cdb-fce5-4c3c-8885-2734f39c11c5.png)
+
+After changing
+
+![image](https://user-images.githubusercontent.com/69652104/215347494-d2c4b7b4-77e7-4c87-a72a-9b659d2218b7.png)
+
+The slack we get after detailed placement.
+
+![image](https://user-images.githubusercontent.com/69652104/215347651-ab4de7c4-ee0d-4128-ad82-5bb9cbd18b03.png)
+
 <!--- | SYNTH_STATERGY | SYNTH_BUFFERING | SYNTH_SIZING | SYNT_DRIVING_CELL  Area | wns | tns |
  | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
  | 0 | 1 | 0 | sky130_fd_sc_hd__inv_8 | 147712.9184 | -23.89 | -711.59 |
@@ -1250,7 +1270,7 @@ Making the pre_sta.conf and save it in the openlane folder.
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
 read_liberty -max /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
 read_liberty -min /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
-read_verilog /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/28-01_21-52/results/synthesis/picorv32a.synthesis.v
+read_verilog /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis.v
 link_design picorv32a
 read_sdc /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/my_base.sdc
 report_checks -path_delay min_max -fields {slew trans net cap input_pin}
@@ -1303,20 +1323,11 @@ To perform pre STA run the command below by opening the terminal in openlane fol
 ```
 sta [file_name] // (our case = pre_sta.conf)
 ```
-The slack for 5 unit time is 
 
-![image](https://user-images.githubusercontent.com/69652104/215327837-4e41707f-ba15-4a2d-aad9-686a84676e0d.png)
+![image](https://user-images.githubusercontent.com/69652104/215348256-07abcc72-6028-4650-be35-2c2c233556e0.png)
 
-The slack for 12 unit time is:
-
-![image](https://user-images.githubusercontent.com/69652104/215328173-71c70db1-ef11-4b5a-b67f-8653c47c5173.png)
 
 As we haven't done CTS hold time doesn't hold any significance. The delay of any cell is function of input slew and output load. We can play with these data and can get slack as positive. So we can also play with some of some of these parameters.
 
-**NOTE: We need to delete the the old synthesis (.v) file to change the slack while changing the attributes/variables/switches.
-
-![image](https://user-images.githubusercontent.com/69652104/215346118-1d1c706f-38a2-4cb0-bada-749c0eb089d1.png)
 
 
-Earlier
-![image](https://user-images.githubusercontent.com/69652104/215346512-172b1cdb-fce5-4c3c-8885-2734f39c11c5.png)
