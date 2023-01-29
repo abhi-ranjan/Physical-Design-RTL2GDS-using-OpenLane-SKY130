@@ -1240,7 +1240,7 @@ Hence we arrive at Θ < 0.9 ns (for our case)
 ## LAB DAY 4 (PART 3)
 ##  OpenSTA for post-synth timing analysis
 
-Making the pre_sta.conf
+Making the pre_sta.conf and save it in the openlane folder.
 
 ```
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
