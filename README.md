@@ -1401,3 +1401,84 @@ Net stage is running CTS. It takes the default settings.
 | `CLOCK_TREE_SYNTH` | Enable clock tree synthesis for tirtonCTS. <br> (Default: `1`)|
 | `CTS_TOLERANCE` | An integer value that represents a tradeoff of QoR and runtime. Higher values will produce smaller runtime but worse QoR <br> (Default: `100`) |
 
+Then execute the following command for CTS.
+
+```
+run_cts
+```
+
+During CTS buffers are added. It generates the new file named `picorv32a.synthesis_cts.v`.
+
+Diving deep in run_cts.
+There is concept of tcl proc. These are basically a proc and the defination of these proc are made somewhere in the flow. We will check the broc.
+
+```
+1. Go to Openlane folder.
+2. Inside that go to scripts. Then go to tcl_commands.
+3. There we can find the tcl files for each command. 
+4. We can see the command inside it which runs the tools.
+5. Inside the openroad folder we can get various other tcl files.
+6. Pre floor plan in done in openroad and post floorplan and placement is done in openlane.
+```
+
+The generated def file in cts is then used for further stages. `generated file picorv32a.cts.def`
+
+Inside CTS only Triton route runs.
+Max slew value is 10% of clock period.
+Max cap value is of output of root buffer for a typical cornor.
+OpenSTA is not inside the openlane flow.
+
+## Timing Analysis with Real Clocks
+
+Setup and hold analysis with real clock will now include clock buffer delays:
+
+* In setup analysis, the point is that the data must arrive first before the clock rising edge to properly latch that data. Setup violation happens when path is slow. This is affected by parameters such as combinational delay, clock buffer delay, time period, setup time, and setup uncertainty (jitter).
+
+* Hold analysis is the delay that the MUX2 model inside the flip flop needs to move the data to outside. This is the time that the launch flop must hold the data before it reaches the capture flop. Hold analysis is done on the same rising clock edge for launch and capture flop unlike in setup analysis where it spans between two rising clock edges. Hold violation happens when path is too fast. This is affected by parameters such as combinational delay, clock buffer delays, and hold time. (time period and setup uncertainty does not matter since launch and capture flops will receive the same rising clock edges fo hold analysis)
+
+* We should have both setup and hold time as positive.
+
+* Openroad was an independent project which was later integreted in openlane. Openroad has OpenSTA integrated in it. 
+
+## LAB DAY 4 (PART 4)
+
+* In the terminal in which we run the run_cts command there only go to openroad. Type the following command in the terminal.
+
+```
+openroad
+```
+
+* This will open the open road. Our objective to do the analysis of the entire circut where clock tree has been build now. Now we will open OpenSTA here. For timing alnalysis.
+
+1. We first create a db `
+2. db is create using lef and def file. In our analysis we use these db.
+(It is a one time process. Whenever lef changes we have to change the db)
+
+* To create a db
+
+All the loaction should be after /openlane/.....
+
+```
+// first read lef (it is inside the tmp folder (merged.lef)
+read_lef [location] {my case = read_lef /openLANE_flow//designs/picorv32a/runs/29-01_18-06/tmp/merged.lef}
+// secondly read def (it is present inside cts folder present under the results folder/cts)
+read_def [location]
+// creating db
+write_db [name] // my case = pico_cts.db (created under the openlane folder)
+// reading db 
+read_db [name] // my case = pico_cts.db
+//  reading verilog (it is present inside cts folder present under the results/synthesis/picorv32a.synthesis_cts.v)
+read_verilog [location] // my case = 
+// reading library (max)
+read_liberty -max $::env(LIB_MAX)
+// reading library (min)
+read_liberty -min $::env(LIB_MIN)
+// reading sdc
+read_sdc [location]
+// now the clock has been generated 
+set_propagated_clock [all_clocks]
+// report
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+
