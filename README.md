@@ -1460,25 +1460,53 @@ All the loaction should be after /openlane/.....
 
 ```
 // first read lef (it is inside the tmp folder (merged.lef)
-read_lef [location] {my case = read_lef /openLANE_flow//designs/picorv32a/runs/29-01_18-06/tmp/merged.lef}
+read_lef [location] {my case = read_lef /openLANE_flow/designs/picorv32a/runs/29-01_18-06/tmp/merged.lef}
+
 // secondly read def (it is present inside cts folder present under the results folder/cts)
-read_def [location]
+read_def [location] {my case = /openLANE_flow/designs/picorv32a/runs/29-01_18-06/results/cts/picorv32a.cts.def}
+
 // creating db
 write_db [name] // my case = pico_cts.db (created under the openlane folder)
+
 // reading db 
 read_db [name] // my case = pico_cts.db
+
 //  reading verilog (it is present inside cts folder present under the results/synthesis/picorv32a.synthesis_cts.v)
-read_verilog [location] // my case = 
+read_verilog [location] // {my case = /openLANE_flow/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis_cts}
+
 // reading library (max)
 read_liberty -max $::env(LIB_MAX)
+
 // reading library (min)
 read_liberty -min $::env(LIB_MIN)
+
 // reading sdc
-read_sdc [location]
+read_sdc [location] {my case = /designs/picorv32a/src/my_base.sdc
+
 // now the clock has been generated 
 set_propagated_clock [all_clocks]
+
 // report
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ```
 
+![image](https://user-images.githubusercontent.com/69652104/215360787-ac963928-c215-4447-816d-853eecbd6b64.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/69652104/215361335-33d6d6ad-ae20-49b3-a6f5-9a75e700578f.png)
