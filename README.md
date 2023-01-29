@@ -1176,7 +1176,7 @@ Next run floor plan by executing the following codes one by one:
 
 ```
 init_floorplan
-placer_io
+place_io
 global_placement_or
 detailed_placement
 tap_decap_or
@@ -1248,8 +1248,44 @@ read_liberty -max /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/o
 read_liberty -min /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
 read_verilog /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/28-01_21-52/results/synthesis/picorv32a.synthesis.v
 link_design picorv32a
-read_sdc /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/picorv32a.sdc
-report_checks - pathdelay min_max - fields {slew trans net cap input_pin}
+read_sdc /home/ee22mtech14005/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/my_base.sdc
+report_checks -path_delay min_max -fields {slew trans net cap input_pin}
 report_tns
 report_wns
+```
+
+After cts new .v files start getting created. 
+
+Creating my_base.sdc
+
+```
+set ::env(CLOCK_PORT) clk
+set ::env(CLOCK_PERIOD) 5.000
+# set ::env(SYNTH_DRIVING_CELL) sky130_vsdinv
+set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__buf16
+set ::env(SYNTH_DRIVING_CELL_PIN) X
+set ::env(SYNTH_CAP_LOAD) 13.6
+create clock [get_ports $::env(CLOCK_PORT)]   -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+set IO_PCT 0.2
+set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+set output_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+puts "\[INFO]: Setting output delay to: $output_delay_value"
+puts "\[INFO]: Setting output delay to: $input_delay_value"
+
+set clk_indx [lsearch [all_inputs [get_port $::env(CLOCK_PORT)]]
+#set rst_indx [lsearch [all_inputs [get_port resetn]]
+set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx]
+#set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
+set all_inputs_wo_clk_rst $all_inputs_wo_clk
+
+# correct resetn
+set_input_delay $input_delay_value -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+#set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+set_output_delay $output_delay_value -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+
+# TODO set this as parameter 
+set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
+puts "\[INFO\]: Setting load to: $cap_load"
+set load $cap load [all_outputs]
 ```
