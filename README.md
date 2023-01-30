@@ -1552,7 +1552,7 @@ When the openlane is building the CTS, it is actually trying to met the skew val
 
 ## LAB DAY 5
 
-The command to load the previous files (basically whatever you have done).
+* The command to load the previous files (basically whatever you have done).
 
 ```
 1. cd work/tools/openlane_working_dir/openlane
@@ -1567,7 +1567,7 @@ prep -design picorv32a -tag 29-01_18-06 -overwrite
 echo $::env(CURRENT_DEF)
 ```
 
-Now we have to do power distribution network (it has to be done in the floorplan itself but as we missed it we will run it now. The creation of power and ground lines along with side line (std_cell rails)is done iby the pdn. 
+* Now we have to do power distribution network (it has to be done in the floorplan itself but as we missed it we will run it now. The creation of power and ground lines along with side line (std_cell rails)is done iby the pdn. 
 
 ```
 gen_pdn
@@ -1575,12 +1575,76 @@ gen_pdn
 
 ![image](https://user-images.githubusercontent.com/69652104/215370418-9ba671ff-8462-4cbe-af72-bcaf873175f5.png)
 
-Stdcell Rail:
+Stdcell Rail, Straps and Macro:
 
 ![image](https://user-images.githubusercontent.com/69652104/215370615-05a49e34-f4f2-4134-a1b6-6239e15b3529.png)
 
 Standard cell are to be placed between the rails. We should ensure that the height of standard cell should be in the multiples of 2.72, so that we can have both VDD and VSS for each of the standard cells.
 
+The power distribution of the chipset is shown below. Power should be supplies from the verticle straps to the standard cell rails. Similarly power should go to the macro. 
+
+The tmp folder consists of all the def files of each stage.
+
+pdn.def consists the cts,def plus it's own values.
+
+* Finally 'run_routing'
+
+![image](https://user-images.githubusercontent.com/69652104/215372000-f4dd116a-ed07-4c24-bc55-870333dbfa23.png)
+
+Before routing we will see the switches for routing, so that we can optimize the routing time (for purpose of workshop)
+
+The command to run routing
+
+```
+run_routing
+```
+The entire routing is divided into two steps: 
+
+![image](https://user-images.githubusercontent.com/69652104/215373505-fde82d10-61d3-49c8-9493-74037b4b6fed.png)
+
+* In global route the output is the a set of routing guides for each of the nets.
+
+* In detail route we use the global route and then we do connectivity between the points. 
+
+*The output of fast route is followed by the detailed route. So,that the detail route should ensure it need to realise the segment, vias in accordance to the global route.
+
+ROUTING SUCCESSFUL 
+
+![image](https://user-images.githubusercontent.com/69652104/215376104-8c82c1e4-8b85-46b5-840e-54d86238de5f.png)
+
+After routing we get number of violations, which can be verified by checking the the .drc file under routing/16-tritoRoute.drc. (We se a blank drc file).
+
+<!--- eoi, aoi,etc are net --->
+
+* Exctracting SPEC (SPEC extraction is done outside openlane as it does not have SPEC Extractor tool in openlane. 
+
+The .spef file can be found under the routing folder under the results folder.
+
+![image](https://user-images.githubusercontent.com/69652104/215381289-93bb1f7a-36c5-4a70-9c95-b897ed92c3a1.png)
+
+The following command can be used to stream in the generated GDSII file. 
+
+```
+run_magic
+```
+
+![image](https://user-images.githubusercontent.com/69652104/215381639-f085634c-b220-4b0a-ae4f-880315bdb19c.png)
+
+<!--- ![image](https://user-images.githubusercontent.com/69652104/215381959-5f131a56-9778-4f50-9756-eb997f9c0782.png)--->
+
+Now the gds file will be generated and it is stored in the magic folder under results folder. 
+
+![image](https://user-images.githubusercontent.com/69652104/215382365-cf847916-f0be-48bc-a5ec-73bdb8617f26.png)
+
+# REFERENCES
+
+[Kunal Ghosh - Co-founder of VSD](https://www.udemy.com/user/anagha/)
+[Nickson Jose - Workshop Instructor](https://www.udemy.com/user/nickson-jose/)
+[OpenLANE-Sky130-Physical-Design-Workshop](https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#floorplan-stage)
+
+# Inquires
+
+[Abhishek Ranjan](https://www.linkedin.com/in/abhishek-ranjan-3b5009195)
 
 
 
@@ -1590,11 +1654,4 @@ Standard cell are to be placed between the rails. We should ensure that the heig
 
 
 
-
-
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/69652104/215361335-33d6d6ad-ae20-49b3-a6f5-9a75e700578f.png)
+<!--- ![image](https://user-images.githubusercontent.com/69652104/215361335-33d6d6ad-ae20-49b3-a6f5-9a75e700578f.png) --->
