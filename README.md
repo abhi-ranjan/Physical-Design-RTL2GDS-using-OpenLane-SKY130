@@ -46,6 +46,7 @@ The following repository consists of knowledge gained and steps followed while d
        - [TASK 3: calculating delays and fall time](#task-3-calculating-delays-and-fall-time)
 * [DAY 4 Pre-layout timing analysis and importance of good clock tree](#day-4-pre---layout-timing-analysis-and-importance-of-good-clock-tree)
    - [Pre-layout timing analysis and importance of good clock tree](#pre-layout-timing-analysis-and-importance-of-good-clock-tree)
+* [DAY 5 - Final step for RTL2GDS]
 # About RTL to GDSII Flow
 RTL (Register tranfer level) to GDSII (Graphic Data Stream) flow consists of the complete set of steps required to create a file which could be sent for tapeout. The RTL code is synthesized and optimised. After sysnthesis of the code, PnR, floor and power planning is done while keeping in check the timing constraints. At the end GDSII file is written out.
 The complete flow consists of following steps:
@@ -1456,7 +1457,7 @@ openroad
 
 * To create a db
 
-All the loaction should be after /openlane/.....
+All the loaction should be after /openLANE_flow/.....
 
 ```
 // first read lef (it is inside the tmp folder (merged.lef)
@@ -1472,16 +1473,16 @@ write_db [name] // my case = pico_cts.db (created under the openlane folder)
 read_db [name] // my case = pico_cts.db
 
 //  reading verilog (it is present inside cts folder present under the results/synthesis/picorv32a.synthesis_cts.v)
-read_verilog [location] // {my case = /openLANE_flow/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis_cts}
+read_verilog [location] // {my case = /openLANE_flow/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis_cts.v}
 
 // reading library (max)
-read_liberty -max $::env(LIB_MAX)
+read_liberty -max $::env(LIB_FASTEST)
 
 // reading library (min)
-read_liberty -min $::env(LIB_MIN)
+read_liberty -min $::env(LIB_SLOWEST)
 
 // reading sdc
-read_sdc [location] {my case = /designs/picorv32a/src/my_base.sdc}
+read_sdc [location] {my case = /openLANE/designs/picorv32a/src/my_base.sdc}
 
 // now the clock has been generated 
 set_propagated_clock [all_clocks]
@@ -1491,6 +1492,81 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ```
 
 ![image](https://user-images.githubusercontent.com/69652104/215360787-ac963928-c215-4447-816d-853eecbd6b64.png)
+
+
+If our chip has hold violation we cannot compensate it but if we have setup violation then we can compensate it. CTS is followed by routing where actual metal layers are being layed then resistances and capacitancs come in picture. Hence, delay will be added due to the metal traces and it will increase the delay of data path.
+
+hold slack = <!--- arrival - required = ---> = 1.6507
+
+![image](https://user-images.githubusercontent.com/69652104/215363156-5beb13d1-40ba-4b96-b29a-1fbb2a31a0a5.png)
+
+setup slack = 6.5014 
+
+![image](https://user-images.githubusercontent.com/69652104/215363387-aaaf6b98-ecd8-4dd9-8575-7ad6e4568679.png)
+
+The above is done for typical cornor but we are seeing it for minimum and maximum cornor hence the analysis is not correct.
+
+to exit the openroad:
+
+```
+exit
+```
+
+So this time we will use the `typical` cornor. So do the same process from the read db.
+
+```
+openroad
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/29-01_18-06/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+Slack for typical cornor
+
+Hold slack = 0.0702
+
+![image](https://user-images.githubusercontent.com/69652104/215364724-b8da44ec-d6cd-4ce8-b0ec-f2b82a03d70f.png)
+
+Setup slack = 4.1080
+
+![image](https://user-images.githubusercontent.com/69652104/215364775-61be94e8-910d-41d4-842e-2cef6584011b.png)
+
+For typical cornor both the slack is met i.e., no violation.
+For max and min cornor we have to do it seperatly because multicornor is not supported. 
+
+The buffer which we have: 
+
+![image](https://user-images.githubusercontent.com/69652104/215365275-89f91843-fd68-4270-afa5-4b951f7fa8f8.png)
+
+When the openlane is building the CTS, it is actually trying to met the skew value by inserting the buffers from left to right. We will always want the skew value skew value to be 10% of the maximum clock period. 
+
+`top` command is used to see all the process.
+
+# Day 5 Final step for RTL2GDS
+
+## THEORY
+
+## LAB DAY 5
+
+The command to load the previous files (basically whatever you have done).
+
+```
+1. cd work/tools/openlane_working_dir/openlane
+2. docker
+3.  ./flow.tcl -interactive
+4. package require openlane 0.9
+5. prep -design picorv32a -tag 29-01_18-06
+// if we include new configuration i.e., edit the config file then we have to do overwrite
+prep -design picorv32a -tag [29-01_18-06] -overwrite 
+```
+
+
+
+
 
 
 
