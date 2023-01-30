@@ -1561,13 +1561,25 @@ The command to load the previous files (basically whatever you have done).
 4. package require openlane 0.9
 5. prep -design picorv32a -tag 29-01_18-06
 // if we include new configuration i.e., edit the config file then we have to do overwrite
-prep -design picorv32a -tag [29-01_18-06] -overwrite 
+prep -design picorv32a -tag 29-01_18-06 -overwrite 
+
+// to check the last def file created i.e., last def
+echo $::env(CURRENT_DEF)
 ```
 
+Now we have to do power distribution network (it has to be done in the floorplan itself but as we missed it we will run it now. The creation of power and ground lines along with side line (std_cell rails)is done iby the pdn. 
 
+```
+gen_pdn
+```
 
+![image](https://user-images.githubusercontent.com/69652104/215370418-9ba671ff-8462-4cbe-af72-bcaf873175f5.png)
 
+Stdcell Rail:
 
+![image](https://user-images.githubusercontent.com/69652104/215370615-05a49e34-f4f2-4134-a1b6-6239e15b3529.png)
+
+Standard cell are to be placed between the rails. We should ensure that the height of standard cell should be in the multiples of 2.72, so that we can have both VDD and VSS for each of the standard cells.
 
 
 
