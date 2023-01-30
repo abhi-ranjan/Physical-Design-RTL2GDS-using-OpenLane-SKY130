@@ -1636,6 +1636,10 @@ Now the gds file will be generated and it is stored in the magic folder under re
 
 ![image](https://user-images.githubusercontent.com/69652104/215382365-cf847916-f0be-48bc-a5ec-73bdb8617f26.png)
 
+Generated layout
+
+![image](https://user-images.githubusercontent.com/69652104/215383079-b493a2d9-423c-46c2-948e-ee76e9cf56b8.png)
+
 # REFERENCES
 
 [Kunal Ghosh - Co-founder of VSD](https://www.udemy.com/user/anagha/)
